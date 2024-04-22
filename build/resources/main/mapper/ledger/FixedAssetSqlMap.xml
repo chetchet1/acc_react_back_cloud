@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.seoulit.account.posting.ledger.mapper.FixedAssetMapper">
+
+    <resultMap id="assetResult" type="kr.co.seoulit.account.posting.ledger.to.FixedAssetBean">
+        <result property="accountCode" column="ACCOUNT_CODE"/>
+        <result property="accountName" column="ACCOUNT_NAME"/>
+        <result property="assetCode" column="ASSET_CODE"/>
+        <result property="assetName" column="ASSET_NAME"/>
+        <result property="acqDate" column="ACQ_DATE"/>
+        <result property="compStatus" column="COMP_STATUS"/>
+    </resultMap>
+
+        <resultMap id="assetDetailResult" type="kr.co.seoulit.account.posting.ledger.to.FixedAssetDetailBean">
+        <result property="assetCode" column="ASSET_CODE"/>
+        <result property="acqCost" column="ACQ_COST"/>
+        <result property="depMethod" column="DEP_METHOD"/>
+        <result property="initAccDepreciation" column="INIT_ACC_DEPRECIATION"/>
+        <result property="prevBookValue" column="PREV_BOOK_VALUE"/>
+        <result property="usefulLife" column="USEFUL_LIFE"/>
+        <result property="depCompYear" column="DEP_COMP_YEAR"/>
+        <result property="dept" column="DEPT"/>
+        <result property="acqQty" column="ACQ_QTY"/>
+        <result property="incDecQty" column="INC_DEC_QTY"/>
+        <result property="remQty" column="REM_QTY"/>
+        <result property="depRate" column="DEP_RATE"/>
+        <result property="month" column="MONTH"/>
+        <result property="genDepExpense" column="GEN_DEP_EXPENSE"/>
+        <result property="currAccDepreciation" column="CURR_ACC_DEPRECIATION"/>
+        <result property="currBookValue" column="CURR_BOOK_VALUE"/>
+    </resultMap>
+
+    <resultMap id="depreciationResult" type="kr.co.seoulit.account.posting.ledger.to.FixedAssetBean">
+        <result property="accountCode" column="ACCOUNT_CODE"/>
+        <result property="accountName" column="ACCOUNT_NAME"/>
+        <result property="assetCode" column="ASSET_CODE"/>
+        <result property="assetName" column="ASSET_NAME"/>
+        <result property="acqDate" column="ACQ_DATE"/>
+        <result property="acqCost" column="ACQ_COST"/>
+        <result property="initAccDepreciation" column="INIT_ACC_DEPRECIATION"/>
+        <result property="prevBookValue" column="PREV_BOOK_VALUE"/>
+        <result property="genDepExpense" column="GEN_DEP_EXPENSE"/>
+        <result property="currAccDepreciation" column="CURR_ACC_DEPRECIATION"/>
+        <result property="currBookValue" column="CURR_BOOK_VALUE"/>
+        <result property="acqQty" column="ACQ_QTY"/>
+        <result property="incDecQty" column="INC_DEC_QTY"/>
+        <result property="remQty" column="REM_QTY"/>
+    </resultMap>
+
+    <select id="selectFixedAssetList" resultMap="assetResult" parameterType="map">
+       <![CDATA[
+        SELECT *
+        FROM FIXED_ASSET
+        WHERE ACCOUNT_CODE=#{accountCode}
+          AND ACCOUNT_NAME=#{accountName}
+        ORDER BY ACQ_DATE
+        ]]>
+    </select>
+
+    <insert id="insertFixedAsset" parameterType="Map" >
+        <![CDATA[
+            INSERT INTO FIXED_ASSET(ACCOUNT_CODE,ACCOUNT_NAME,ASSET_CODE,ASSET_NAME,ACQ_DATE,COMP_STATUS)
+            VALUES (#{accountCode}
+                   ,#{accountName}
+                   ,#{assetCode}
+                   ,#{assetName}
+                   ,#{acqDate}
+                   ,#{compStatus}
+            )
+        ]]>
+    </insert>
+
+        <!--    감가상각비현황 전체조회-->
+    <select id="depreciationList" resultMap="depreciationResult">
+      <![CDATA[
+                SELECT  A.ACCOUNT_CODE,
+                        A.ACCOUNT_NAME,
+                        TO_CHAR(sum(AD.ACQ_COST), 'FM999,999,999,999') AS ACQ_COST,
+                        TO_CHAR(sum(AD.INIT_ACC_DEPRECIATION), 'FM999,999,999,999') AS INIT_ACC_DEPRECIATION,
+                        TO_CHAR(sum(AD.PREV_BOOK_VALUE), 'FM999,999,999,999') AS PREV_BOOK_VALUE,
+                        TO_CHAR(sum(AD.GEN_DEP_EXPENSE), 'FM999,999,999,999') AS GEN_DEP_EXPENSE,
+                        TO_CHAR(sum(AD.CURR_ACC_DEPRECIATION), 'FM999,999,999,999') AS CURR_ACC_DEPRECIATION,
+                        TO_CHAR(sum(AD.CURR_BOOK_VALUE), 'FM999,999,999,999') AS CURR_BOOK_VALUE
+                FROM FIXED_ASSET A,
+                     FIXED_ASSET_DETAIL AD
+                WHERE A.ASSET_CODE = AD.ASSET_CODE
+                GROUP BY A.ACCOUNT_CODE, A.ACCOUNT_NAME
+      ]]>
+    </select>
+
+        <!--    감가상각비현황 선택조회-->
+    <select id="selectedDepreciationList" parameterType="String" resultMap="depreciationResult">
+    <![CDATA[
+        SELECT  A.ACCOUNT_CODE,
+                A.ACCOUNT_NAME,
+                A.ASSET_CODE,
+                A.ASSET_NAME,
+                TO_CHAR(sum(AD.ACQ_COST), 'FM999,999,999,999') AS ACQ_COST,
+                TO_CHAR(sum(AD.INIT_ACC_DEPRECIATION), 'FM999,999,999,999') AS INIT_ACC_DEPRECIATION,
+                TO_CHAR(sum(AD.PREV_BOOK_VALUE), 'FM999,999,999,999') AS PREV_BOOK_VALUE,
+                TO_CHAR(sum(AD.GEN_DEP_EXPENSE), 'FM999,999,999,999') AS GEN_DEP_EXPENSE,
+                TO_CHAR(sum(AD.CURR_ACC_DEPRECIATION), 'FM999,999,999,999') AS CURR_ACC_DEPRECIATION,
+                TO_CHAR(sum(AD.CURR_BOOK_VALUE), 'FM999,999,999,999') AS CURR_BOOK_VALUE
+        FROM FIXED_ASSET A,
+             FIXED_ASSET_DETAIL AD
+        WHERE A.ACCOUNT_CODE = #{accountCode}
+        AND A.ASSET_CODE = AD.ASSET_CODE
+        GROUP BY A.ACCOUNT_CODE, A.ACCOUNT_NAME, A.ASSET_CODE, A.ASSET_NAME
+        ]]>
+    </select>
+
+    <!--고정자산 관리대장 조회-->
+    <select id="fixedAssetLedgerList" resultMap="depreciationResult">
+      <![CDATA[
+        SELECT  DECODE(GROUPING_ID(A.ACCOUNT_CODE,
+                                A.ACCOUNT_NAME,
+                                A.ASSET_CODE,
+                                A.ASSET_NAME,
+                                A.ACQ_DATE), 7, null, A.ACCOUNT_CODE) AS ACCOUNT_CODE,
+                DECODE(GROUPING_ID(A.ACCOUNT_CODE,
+                                A.ACCOUNT_NAME,
+                                A.ASSET_CODE,
+                                A.ASSET_NAME,
+                                A.ACQ_DATE), 7, '[ ' || ACCOUNT_NAME || ' 소계 ]', A.ACCOUNT_NAME) AS ACCOUNT_NAME,
+                A.ASSET_CODE,
+                A.ASSET_NAME,
+                A.ACQ_DATE,
+                TO_CHAR(sum(AD.ACQ_COST), 'FM999,999,999,999') AS ACQ_COST,
+                TO_CHAR(sum(AD.INIT_ACC_DEPRECIATION), 'FM999,999,999,999') AS INIT_ACC_DEPRECIATION,
+                TO_CHAR(sum(AD.PREV_BOOK_VALUE), 'FM999,999,999,999') AS PREV_BOOK_VALUE,
+                TO_CHAR(sum(AD.GEN_DEP_EXPENSE), 'FM999,999,999,999') AS GEN_DEP_EXPENSE,
+                TO_CHAR(sum(AD.CURR_ACC_DEPRECIATION), 'FM999,999,999,999') AS CURR_ACC_DEPRECIATION,
+                TO_CHAR(sum(AD.CURR_BOOK_VALUE), 'FM999,999,999,999') AS CURR_BOOK_VALUE
+        FROM FIXED_ASSET A,
+             FIXED_ASSET_DETAIL AD
+        WHERE A.ASSET_CODE = AD.ASSET_CODE
+        GROUP BY ROLLUP (A.ACCOUNT_CODE,
+                         A.ACCOUNT_NAME,
+                         A.ASSET_CODE,
+                         A.ASSET_NAME,
+                         A.ACQ_DATE)
+        HAVING GROUPING_ID(A.ACCOUNT_CODE,
+                           A.ACCOUNT_NAME,
+                           A.ASSET_CODE,
+                           A.ASSET_NAME,
+                           A.ACQ_DATE) IN (0, 7)
+
+        ORDER BY A.ACCOUNT_CODE, A.ACQ_DATE
+        ]]>
+    </select>
+</mapper>

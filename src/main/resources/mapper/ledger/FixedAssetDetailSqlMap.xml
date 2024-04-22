@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.seoulit.account.posting.ledger.mapper.FixedAssetDetailMapper">
+
+    <resultMap id="assetDetailResult" type="kr.co.seoulit.account.posting.ledger.to.FixedAssetDetailBean">
+        <result property="assetCode" column="ASSET_CODE"/>
+        <result property="acqCost" column="ACQ_COST"/>
+        <result property="depMethod" column="DEP_METHOD"/>
+        <result property="initAccDepreciation" column="INIT_ACC_DEPRECIATION"/>
+        <result property="prevBookValue" column="PREV_BOOK_VALUE"/>
+        <result property="usefulLife" column="USEFUL_LIFE"/>
+        <result property="depCompYear" column="DEP_COMP_YEAR"/>
+        <result property="dept" column="DEPT"/>
+        <result property="acqQty" column="ACQ_QTY"/>
+        <result property="incDecQty" column="INC_DEC_QTY"/>
+        <result property="remQty" column="REM_QTY"/>
+        <result property="depRate" column="DEP_RATE"/>
+        <result property="month" column="MONTH"/>
+        <result property="genDepExpense" column="GEN_DEP_EXPENSE"/>
+        <result property="currAccDepreciation" column="CURR_ACC_DEPRECIATION"/>
+        <result property="currBookValue" column="CURR_BOOK_VALUE"/>
+    </resultMap>
+
+    <insert id="insertFixedAssetDetail" parameterType="Map" >
+        <![CDATA[
+            INSERT INTO FIXED_ASSET_DETAIL
+            (
+             ASSET_CODE
+            ,ACQ_COST
+            ,DEP_METHOD
+            ,INIT_ACC_DEPRECIATION
+            ,PREV_BOOK_VALUE
+            ,USEFUL_LIFE
+            ,DEP_COMP_YEAR
+            ,DEPT
+            ,ACQ_QTY
+            ,INC_DEC_QTY
+            ,REM_QTY
+            ,DEP_RATE
+            ,MONTH
+            ,GEN_DEP_EXPENSE
+            ,CURR_ACC_DEPRECIATION
+            ,CURR_BOOK_VALUE
+            )
+            VALUES (#{assetCode},
+                    #{acqCost},
+                    #{depMethod},
+                    #{initAccDepreciation},
+                    #{prevBookValue},
+                    #{usefulLife},
+                    #{depCompYear},
+                    #{dept},
+                    #{acqQty},
+                    #{incDecQty},
+                    #{remQty},
+                    (rtrim(to_char(#{depRate}, 'FM9990D99'), '.')),
+                    #{month},
+                    #{genDepExpense},
+                    #{currAccDepreciation},
+                    #{currBookValue}
+                   )
+            ]]>
+    </insert>
+
+</mapper>
