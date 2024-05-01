@@ -47,31 +47,38 @@ public class TotalTrialBalanceController {
 		return closingResult;
 		
 	}
-//
-//	@GetMapping("/searchTotalTrialBalance")
-//	public HashMap<String, Object> searchTotalTrialBalance(@RequestParam("accountPeriodNo") String accountPeriodNo) {
-//
-//		HashMap<String, Object> map = new HashMap<>();
-//		try {
-//			HashMap<String, Object> totaltrialList = trialBalanceService.searchTotalTrialBalance(accountPeriodNo);
-//			map.put("accountPeriodNo", accountPeriodNo);
-//		} catch (Exception e2) {
-//			map.put("errorCode", -1);
-//			map.put("errorMsg", e2.getMessage());
-//		}
-//
-//		return map;
-//	}
+
+	// 결산 전 데이터 조회
 
 	@GetMapping("/searchTotalTrialBalance")
-	public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(@RequestParam String accountPeriodNo) {
-		System.out.println(accountPeriodNo);
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("accountPeriodNo", accountPeriodNo);
-		ArrayList<TotalTrialBalanceBean> totaltrialList = trialBalanceService.searchTotalTrialBalance(map);
+	public HashMap<String, Object> searchTotalTrialBalance(@RequestParam ("accountPeriodNo") String accountPeriodNo) {
 
-		return totaltrialList;
+		System.out.println("여기 온 accountPeriodNo 는? " + accountPeriodNo);
+		HashMap<String, Object> map = new HashMap<>();
+		try {
+			map.put("accountPeriodNo", accountPeriodNo);
+			map.put("errorCode", 0);
+			map.put("errorMsg", "조회 완료");
+			ArrayList<TotalTrialBalanceBean> totaltrialList = trialBalanceService.searchTotalTrialBalance(map);
+			map.put("totalTrialBalanceResult", totaltrialList);
+		} catch (Exception e2) {
+			map.put("errorCode", -1);
+			map.put("errorMsg", e2.getMessage());
+		}
+
+		return map;
 	}
+
+	// 결산 전 데이터 조회
+//	@GetMapping("/searchTotalTrialBalance")
+//	public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(@RequestParam String accountPeriodNo) {
+//		System.out.print("----- accountPeriodNo -----> " + accountPeriodNo);
+//		HashMap<String, Object> map = new HashMap<>();
+//		map.put("accountPeriodNo", accountPeriodNo);
+//		ArrayList<TotalTrialBalanceBean> totaltrialList = trialBalanceService.searchTotalTrialBalance(map);
+//
+//		return totaltrialList;
+//	}
 
 	@GetMapping("/totaltrialbalance")
 	public HashMap<String, Object> findTotalTrialBalance(@RequestParam("accountPeriodNo") String accountPeriodNo,

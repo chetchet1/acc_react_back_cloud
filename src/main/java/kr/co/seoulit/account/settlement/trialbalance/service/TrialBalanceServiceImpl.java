@@ -63,6 +63,8 @@ public class TrialBalanceServiceImpl implements TrialBalanceService{
 	@Override
 	public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(HashMap<String, Object> map) {
 		System.out.println(map);
+		System.out.println(map.get("accountPeriodNo"));
+		// 변동 전 { accountPeriodNo = (회계기수번호) }
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		// TODO Auto-generated method stub
 		return totalTrialBalanceDAO.selectTotalTrialBalance(map);

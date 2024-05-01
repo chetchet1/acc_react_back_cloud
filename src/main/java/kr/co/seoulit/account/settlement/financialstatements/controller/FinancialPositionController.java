@@ -15,7 +15,8 @@ public class FinancialPositionController {
 	 @Autowired
     private FinancialStatementsService financialStatementsService;
 	
-  
+
+	 // 재무상태표 조회
 	 @GetMapping("/financialposition")
     public HashMap<String, Object> handleRequestInternal(@RequestParam("accountPeriodNo") String accountPeriodNo,
     								          			 @RequestParam("callResult") String callResult) {

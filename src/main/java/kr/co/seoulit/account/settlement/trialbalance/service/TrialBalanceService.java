@@ -17,5 +17,6 @@ public interface TrialBalanceService {
 	 
 	 public ArrayList<DetailTrialBalanceBean> findDetailTrialBalance(String fromDate, String toDate);
 	 
+	 // 결산 전 합계시산표 조회
 	 public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(HashMap<String, Object> map);
 }
