@@ -23,19 +23,6 @@ pipeline {
             }
         }
 
-        // AWS EKS 클러스터에 로그인
-        stage('Update Kubeconfig') {
-            steps {
-                script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-key']]) {
-                        bat '''
-                        aws eks update-kubeconfig --region %REGION% --name test-eks-cluster
-                        '''
-                    }
-                }
-            }
-        }
-
         // 회계 프론트엔드 및 백엔드 서비스 배포
         stage('Apply Services') {
             steps {
