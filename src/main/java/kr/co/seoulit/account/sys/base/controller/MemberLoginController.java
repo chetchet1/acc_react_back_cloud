@@ -16,9 +16,9 @@ import kr.co.seoulit.account.sys.base.to.MenuBean;
 import kr.co.seoulit.account.operate.humanresource.to.EmployeeBean;
 import net.sf.json.JSONObject;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.PrintWriter;
 import java.time.LocalDate;

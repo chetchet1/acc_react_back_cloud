@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import kr.co.seoulit.account.posting.business.entity.SlipEntity;
 import kr.co.seoulit.account.posting.business.service.JpaSlipService;
@@ -47,7 +47,7 @@ public class SlipController {
 	// ====================전표 조회 ======================
 	@GetMapping("/rangedsliplist")
 	public ArrayList<SlipBean> findRangedSlipList(@RequestParam("startDate") String fromDate,
-			@RequestParam("endDate") String toDate, @RequestParam("slipStatus") String slipStatus) {
+												  @RequestParam("endDate") String toDate, @RequestParam("slipStatus") String slipStatus) {
 
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("fromDate", fromDate);
@@ -108,17 +108,15 @@ public class SlipController {
 	public void modifyapproveSlip(@RequestBody SlipBean slipBean) {
 		businessService.modifyapproveSlip(slipBean);
 	}
-//병합
+	//병합
 	@GetMapping("/approvalsliplist")
 	public ArrayList<SlipBean> findApprovalSlipList(@RequestParam("startDate") String fromDate,
-			@RequestParam("endDate") String toDate, @RequestParam("slipStatus") String status) {
-		System.out.println("slipStatus = " + status);
+													@RequestParam("endDate") String toDate, @RequestParam("slipStatus") String status) {
 
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("fromDate", fromDate);
 		map.put("toDate", toDate);
 		map.put("status", status);
-		System.out.println("map = " + map);
 		ArrayList<SlipBean> approvalSlipList = businessService.findApprovalSlipList(map);
 
 		return approvalSlipList;
@@ -133,7 +131,7 @@ public class SlipController {
 
 	@GetMapping("/accountingsettlementstatus")
 	public HashMap<String, Object> findAccountingSettlementStatus(@RequestParam String accountPeriodNo,
-			@RequestParam String callResult) {
+																  @RequestParam String callResult) {
 		JSONObject json = new JSONObject();
 		HashMap<String, Object> params = new HashMap<>();
 

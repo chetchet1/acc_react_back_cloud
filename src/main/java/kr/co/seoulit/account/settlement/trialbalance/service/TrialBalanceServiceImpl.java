@@ -14,51 +14,51 @@ import kr.co.seoulit.account.settlement.trialbalance.to.TotalTrialBalanceBean;
 @Service
 @Transactional
 public class TrialBalanceServiceImpl implements TrialBalanceService{
-    
+
 	@Autowired
-    private TotalTrialBalanceMapper totalTrialBalanceDAO;
+	private TotalTrialBalanceMapper totalTrialBalanceDAO;
 
-    @Override
-    public HashMap<String, Object> findTotalTrialBalance(String accountPeriodNo, String callResult) {
+	@Override
+	public HashMap<String, Object> findTotalTrialBalance(String accountPeriodNo, String callResult) {
 
-        	HashMap<String, Object> map = new HashMap<>();
-			map.put("accountPeriodNo", accountPeriodNo);
-			map.put("callResult" , callResult);
-        	totalTrialBalanceDAO.selectcallTotalTrialBalance(map);
-        	
-        return map;
-    }
-    
-    @Override
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("accountPeriodNo", accountPeriodNo);
+		map.put("callResult" , callResult);
+		totalTrialBalanceDAO.selectcallTotalTrialBalance(map);
+
+		return map;
+	}
+
+	@Override
 	public HashMap<String, Object> findEarlyStatements(HashMap<String,Object> params) {
-    		System.out.println(params);
-    		 HashMap<String, Object> earlyledgersList = null;
-	    	 earlyledgersList = totalTrialBalanceDAO.selectcallEarlyStatements(params);
+		System.out.println(params);
+		HashMap<String, Object> earlyledgersList = null;
+		earlyledgersList = totalTrialBalanceDAO.selectcallEarlyStatements(params);
 
-	     return earlyledgersList;
+		return earlyledgersList;
 
-	 }
-    
-    @Override
+	}
+
+	@Override
 	public HashMap<String, Object> findchangeAccountingSettlement(String accountPeriodNo, String callResult) {
 
-        	HashMap<String, String> map = new HashMap<>();
-        	map.put("accountPeriodNo", accountPeriodNo);
-        	map.put("callResult", callResult);
-        	return totalTrialBalanceDAO.selectAccountingSettlement(map);
-    }
-    
-    @Override
-	public ArrayList<DetailTrialBalanceBean> findDetailTrialBalance(String fromDate, String toDate) {
-    		
-				HashMap<String, Object> params = new HashMap<>();
-				params.put("fromDate",fromDate);
-				params.put("toDate",toDate);
-		
-				ArrayList<DetailTrialBalanceBean> detailTrialBalanceList = totalTrialBalanceDAO.selectDetailTrialBalance(params);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("accountPeriodNo", accountPeriodNo);
+		map.put("callResult", callResult);
+		return totalTrialBalanceDAO.selectAccountingSettlement(map);
+	}
 
-	        return detailTrialBalanceList;
-    }
+	@Override
+	public ArrayList<DetailTrialBalanceBean> findDetailTrialBalance(String fromDate, String toDate) {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("fromDate",fromDate);
+		params.put("toDate",toDate);
+
+		ArrayList<DetailTrialBalanceBean> detailTrialBalanceList = totalTrialBalanceDAO.selectDetailTrialBalance(params);
+
+		return detailTrialBalanceList;
+	}
 
 	@Override
 	public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(HashMap<String, Object> map) {

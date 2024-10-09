@@ -45,6 +45,21 @@
 
 	</update>
 
+
+
+
+	<insert id="insertBaord" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
+		INSERT INTO BOARD (ID,TITLE,CONTENTS,WRITTEN_BY,UPDATE_BY)
+		VALUES(#{id}
+			  ,#{title}
+			  ,#{contents}
+			  ,#{writtenBy}
+			  ,#{updateBy})
+
+	</insert>
+
+
+
 	<select id="selectDetailBoardList"  parameterType="String" resultType="kr.co.seoulit.account.sys.base.to.BoardBean">
 		SELECT
 			B.ID as id,
@@ -80,15 +95,15 @@
 		WHERE ID=#{id}
 
 	</update>
-	<insert id="insertBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
+	<insert id="insertBoard1" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
 		INSERT INTO BOARD (ID,TITLE,CONTENTS,WRITTEN_BY,UPDATE_BY
-		,LOOKUP)
+						  ,LOOKUP)
 		VALUES (BOARD_Seq.NEXTVAL
-		,#{title}
-		,#{contents}
-		,#{writtenBy}
-		,#{writtenBy}
-		,0)
+			   ,#{title}
+			   ,#{contents}
+			   ,#{writtenBy}
+			   ,#{writtenBy}
+			   ,0)
 	</insert>
 
 
@@ -139,20 +154,20 @@
 
 	</update>
 
-<!--	<resultMap id="fileInsertBoard" type="kr.co.seoulit.account.sys.base.to.BoardFIleBean">-->
-<!--		<result property="fileId" column="FILE_ID"/>-->
-<!--		<result property="boardId" column="BOARD_ID"/>-->
-<!--		<result property="fileName" column="FILE_NAME"/>-->
-<!--		<result property="fileOriName" column="FILE_ORINAME"/>-->
-<!--		<result property="fileUrl" column="FILE_URL"/>-->
-<!--	</resultMap>-->
+	<!--	<resultMap id="fileInsertBoard" type="kr.co.seoulit.account.sys.base.to.BoardFIleBean">-->
+	<!--		<result property="fileId" column="FILE_ID"/>-->
+	<!--		<result property="boardId" column="BOARD_ID"/>-->
+	<!--		<result property="fileName" column="FILE_NAME"/>-->
+	<!--		<result property="fileOriName" column="FILE_ORINAME"/>-->
+	<!--		<result property="fileUrl" column="FILE_URL"/>-->
+	<!--	</resultMap>-->
 
-<insert id="fileInsert" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
+	<insert id="fileInsert" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
 	<![CDATA[
-	INSERT INTO
-		BOARD_FILE (FILE_ID, BOARD_ID, FILE_NAME, FILE_ORINAME, FILE_URL)
-VALUES ( BOARD_FILE_SEQ.NEXTVAL,BOARD_Seq.currval,#{fileName},#{fileOriName},#{fileUrl})
-	]]>
+		INSERT INTO
+			BOARD_FILE (FILE_ID, BOARD_ID, FILE_NAME, FILE_ORINAME, FILE_URL)
+		VALUES ( BOARD_FILE_SEQ.NEXTVAL,BOARD_Seq.currval,#{fileName},#{fileOriName},#{fileUrl})
+		]]>
 </insert>
 
 

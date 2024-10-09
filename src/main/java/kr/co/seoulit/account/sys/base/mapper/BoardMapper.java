@@ -9,21 +9,38 @@ import kr.co.seoulit.account.sys.base.to.BoardBean;
 @Mapper
 public interface BoardMapper {
 
+	ArrayList<BoardBean> selectDetailBoardList1(String id);
+
+
+
 	ArrayList<BoardBean> selectParentBoardList();
 
-	ArrayList<BoardBean> selectDetailBoardList(String id);
+	BoardBean selectBoardId(String id);
 
-	ArrayList<BoardBean> selectDetailBoardList1(String id);
+	BoardBean selectDetailBoardList(String id);
 
 	void deleteBoardList(String id);
 
-	void updateLookup(String id);
-
 	void insertBoard(BoardBean boardbean);
+
+	void updateBoard(BoardBean boardbean);
+
+
+
+
 
 	void boardModify(BoardBean boardbean);
 
+
+
+
+
 	ArrayList<BoardBean> selectreplyList(String id);
+
+	void updateLookup(String id);
+
+
+	void selectParentBoardList2();
 
 	void insertReBoard(BoardBean boardbean);
 

@@ -2,9 +2,7 @@ package kr.co.seoulit.account.operate.system.mapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import kr.co.seoulit.account.operate.system.to.AccountCodeBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.seoulit.account.operate.system.to.AccountBean;
@@ -13,10 +11,6 @@ import kr.co.seoulit.account.operate.system.to.PeriodBean;
 
 @Mapper
 public interface AccountSubjectMapper {
-
-    public List<AccountCodeBean> getAccountCodeList();
-
-    public List<AccountBean> getAccount(HashMap<String, Object> param);
 
     void insertDetailaccountList(AccountBean accountBean);
 

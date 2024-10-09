@@ -14,15 +14,15 @@ import kr.co.seoulit.account.settlement.trialbalance.to.DetailTrialBalanceBean;
 @RestController
 @RequestMapping("/settlement")
 public class DetailTrialBalanceController {
-	@Autowired
+    @Autowired
     private TrialBalanceService trialBalanceService;
 
     //일(월)계표
-	@GetMapping("/detailtrialbalance")
+    @GetMapping("/detailtrialbalance")
     public HashMap<String, Object> handleRequestInternal(@RequestParam("fromDate") String fromDate,
                                                          @RequestParam("toDate") String toDate) {
-		 System.out.println("걸리냐?");
-         HashMap<String , Object> map =new HashMap<>();
+        System.out.println("걸리냐?");
+        HashMap<String , Object> map =new HashMap<>();
         ArrayList<DetailTrialBalanceBean> detailTrialBalanceList = trialBalanceService.findDetailTrialBalance(fromDate, toDate);
         map.put("detailTrialBalanceList" ,detailTrialBalanceList);
 

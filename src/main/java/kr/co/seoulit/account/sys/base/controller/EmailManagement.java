@@ -4,12 +4,12 @@ package kr.co.seoulit.account.sys.base.controller;
  * 
  * import java.util.Properties;
  * 
- * import javax.activation.DataHandler; import javax.activation.FileDataSource;
- * import javax.mail.BodyPart; import javax.mail.Message; import
- * javax.mail.Multipart; import javax.mail.PasswordAuthentication; import
- * javax.mail.Session; import javax.mail.Transport; import
- * javax.mail.internet.InternetAddress; import javax.mail.internet.MimeBodyPart;
- * import javax.mail.internet.MimeMessage; import
+ * import jakartaactivation.DataHandler; import jakartaactivation.FileDataSource;
+ * import jakarta.mail.BodyPart; import jakarta.mail.Message; import
+ * javax.mail.Multipart; import jakarta.mail.PasswordAuthentication; import
+ * javax.mail.Session; import jakarta.mail.Transport; import
+ * javax.mail.internet.InternetAddress; import jakarta.mail.internet.MimeBodyPart;
+ * import jakarta.mail.internet.MimeMessage; import
  * javax.mail.internet.MimeMultipart; import
  * javax.servlet.http.HttpServletRequest; import
  * javax.servlet.http.HttpServletResponse;

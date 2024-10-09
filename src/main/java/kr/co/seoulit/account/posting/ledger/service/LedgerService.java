@@ -10,13 +10,15 @@ import kr.co.seoulit.account.posting.ledger.to.*;
 
 public interface LedgerService {
 
-	ArrayList<CashJournalBean> findCashJournal(String fromDate, String toDate);
+    ArrayList<CashJournalBean> findCashJournal(String fromDate, String toDate);
 
     ArrayList<CashJournalBean> findTotalCashJournal(String year, String account);
 
     ArrayList<JournalBean> findRangedJournalList(String fromDate, String toDate);
 
     ArrayList<JournalDetailBean> findJournalDetailList(String journalNo);
+
+    ArrayList<AssetBean> findAssetList();
 
     ArrayList<AssetItemBean> findAssetItemList(String parentsCode);
 
@@ -26,6 +28,8 @@ public interface LedgerService {
 
     void removeAssetItem(String assetItemCode);
 
+    public ArrayList<CurrentAssetBean> findCurrentAssetList(String accountCode, String accountName);
+
     public ArrayList<AccountBean> currentAssetCode();
 
     public ArrayList<GeneralLedgerBean> findGeneralAccountLedgerList(HashMap<String , Object> map);
@@ -33,22 +37,5 @@ public interface LedgerService {
     public ArrayList<AssetItemBean> findAssetDta(String parentsCode);
 
     public ArrayList<GeneralLedgerBean> findAccountLedger(String fromDate, String toDate, String accountCode);
-
-    //고정자산유형
-    ArrayList<AssetBean> findAssetList();
-
-    //고정자산목록
-    public ArrayList<FixedAssetBean> findFixedAssetList(String accountCode, String accountName);
-
-    //고정자산추가
-    public void insertFixedAsset(FixedAssetBean fixedAssetBean);
-
-    //감가상각현황 전체조회
-    public ArrayList<FixedAssetBean> depreciationList();
-
-    //감가상각현황 조건조회
-    public ArrayList<FixedAssetBean> selectedDepreciationList(String accountCode);
-
-    public ArrayList<FixedAssetBean> fixedAssetLedgerList();
 }
 

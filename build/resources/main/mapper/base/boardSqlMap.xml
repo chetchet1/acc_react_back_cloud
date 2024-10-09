@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.seoulit.account.sys.base.mapper.BoardMapper">
+<mapper namespace="kr.co.seoulit.account.sys.board.mapper.BoardSqlMapper">
 
-	<resultMap id="insertBoard" type="kr.co.seoulit.account.sys.base.to.BoardBean">
+	<resultMap id="insertBoard1" type="kr.co.seoulit.account.sys.board.to.BoardTO">
 		<result property="id" column="ID"/>
 		<result property="title" column="TITLE"/>
 		<result property="contents" column="CONTENTS"/>
@@ -22,18 +22,15 @@
 	</resultMap>
 
 
-	<select id="selectParentBoardList" resultType="kr.co.seoulit.account.sys.base.to.BoardBean">
+
+	<select id="selectBoardList" resultType="kr.co.seoulit.account.sys.board.to.BoardTO">
 		SELECT
 			ID as id,
 			TITLE  as title,
 			CONTENTS as contents,
 			WRITTEN_BY as writtenBy,
-			UPDATE_BY as updateBy,
-			WRITE_DATE as writeDate,
-			UPDATE_DATE_TIME as updateDateTime,
-			LOOKUP as lookup
+			WRITE_DATE as writeDate
 		FROM BOARD
-		WHERE DELETE_FLAG = 'N'
 		ORDER BY ID
 
 	</select>
@@ -45,7 +42,47 @@
 
 	</update>
 
-	<select id="selectDetailBoardList"  parameterType="String" resultType="kr.co.seoulit.account.sys.base.to.BoardBean">
+	<select id="selectBoardId" resultType="kr.co.seoulit.account.sys.board.to.BoardTO">
+		SELECT
+			ID as id,
+			TITLE  as title,
+			CONTENTS as contents,
+			WRITTEN_BY as writtenBy,
+			WRITE_DATE as writeDate
+		FROM BOARD
+		WHERE id=#{id}
+	</select>
+
+
+
+	<select id="selectBoardReplyId" resultType="kr.co.seoulit.account.sys.board.to.BoardTO" >
+		SELECT
+			ID as id,
+			CONTENTS as contents,
+			WRITTEN_BY as writtenBy,
+			REPLY_ID as replyId
+		FROM BOARD_REPLY
+		WHERE id=#{id}
+	</select>
+
+	<insert id="insertReplyBoard" parameterType="kr.co.seoulit.account.sys.board.to.BoardTO" useGeneratedKeys="true" keyProperty="replyId">
+		INSERT INTO BOARD_REPLY (ID,CONTENTS,WRITTEN_BY)
+		VALUES ( #{id}
+			   ,#{contents}
+			   ,#{writtenBy}
+			   )
+	</insert>
+
+	<delete id="deleteReplyBoardList"  parameterType="kr.co.seoulit.account.sys.board.to.BoardTO">
+		DELETE FROM BOARD_REPLY
+		WHERE REPLY_ID=#{replyId}
+	</delete>
+
+
+
+
+
+	<select id="selectDetailBoardList"  parameterType="String" resultType="kr.co.seoulit.account.sys.board.to.BoardTO">
 		SELECT
 			B.ID as id,
 			B.TITLE  as title,
@@ -72,24 +109,31 @@
 		WHERE B.ID= #{id} and B.ID = F.BOARD_ID
 		ORDER BY B.ID ASC
 	</select>
-	<update id="deleteBoardList" parameterType="String" >
+
+
+	<delete id="deleteBoardList"  parameterType="kr.co.seoulit.account.sys.board.to.BoardTO">
+		DELETE FROM BOARD
+		WHERE ID=#{id}
+	</delete>
+
+	<!--<update id="deleteBoardList" parameterType="String" >
 
 		UPDATE  BOARD
 		SET
 			DELETE_FLAG = 'Y'
 		WHERE ID=#{id}
 
-	</update>
-	<insert id="insertBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
-		INSERT INTO BOARD (ID,TITLE,CONTENTS,WRITTEN_BY,UPDATE_BY
-		,LOOKUP)
-		VALUES (BOARD_Seq.NEXTVAL
-		,#{title}
-		,#{contents}
-		,#{writtenBy}
-		,#{writtenBy}
-		,0)
-	</insert>
+	</update>-->
+	<!--	<insert id="insertBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">-->
+	<!--		INSERT INTO BOARD (ID,TITLE,CONTENTS,WRITTEN_BY,UPDATE_BY-->
+	<!--		,LOOKUP)-->
+	<!--		VALUES (BOARD_Seq.NEXTVAL-->
+	<!--		,#{title}-->
+	<!--		,#{contents}-->
+	<!--		,#{writtenBy}-->
+	<!--		,#{writtenBy}-->
+	<!--		,0)-->
+	<!--	</insert>-->
 
 
 
@@ -100,60 +144,77 @@
 
 	</update>
 
-
-
-
-
-
-	<!--  댓글 CRUD -->
-
-	<select id="selectreplyList"  parameterType="String" resultType="kr.co.seoulit.account.sys.base.to.BoardBean">
-		SELECT
-			RE.RID as rid
-			 , RE.RE_CONTENTS as reContents
-			 , RE.RE_WRITER AS reWritter
-			 ,RE.RE_WRITEDATE as reWrittedate
-		FROM BOARD_REPLY RE LEFT OUTER JOIN BOARD B
-											ON RE.BID = B.ID
-		WHERE RE.BID = #{id}
-	</select>
-
-	<insert id="insertReBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean" >
-		INSERT INTO BOARD_REPLY (RID,BID,RE_CONTENTS,RE_WRITER,RE_WRITEDATE)
-		VALUES (REPLY_Seq.NEXTVAL
-			   ,#{bid}
-			   ,#{reContents}
-			   ,#{reWritter}
-			   ,SYSDATE)
+	<insert id="insertBoard" parameterType="kr.co.seoulit.account.sys.board.to.BoardTO">
+		INSERT INTO BOARD (TITLE,CONTENTS,WRITTEN_BY)
+		VALUES ( #{title}
+			   ,#{contents}
+			   ,#{writtenBy}
+			   )
 	</insert>
 
-	<delete id="deleteReBoard" parameterType="String" >
-
-		DELETE  FROM BOARD_REPLY WHERE RID = #{rid}
-
-	</delete>
-	<update id="modifyReBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
-		UPDATE BOARD_REPLY SET
-			RE_CONTENTS=#{reContents}
-		WHERE RID=#{rid}
-
+	<update id="updateBoard" parameterType="kr.co.seoulit.account.sys.board.to.BoardTO">
+		UPDATE BOARD
+		SET TITLE = #{title},
+			CONTENTS = #{contents}
+		WHERE ID = #{id}
 	</update>
 
-<!--	<resultMap id="fileInsertBoard" type="kr.co.seoulit.account.sys.base.to.BoardFIleBean">-->
-<!--		<result property="fileId" column="FILE_ID"/>-->
-<!--		<result property="boardId" column="BOARD_ID"/>-->
-<!--		<result property="fileName" column="FILE_NAME"/>-->
-<!--		<result property="fileOriName" column="FILE_ORINAME"/>-->
-<!--		<result property="fileUrl" column="FILE_URL"/>-->
-<!--	</resultMap>-->
 
-<insert id="fileInsert" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">
-	<![CDATA[
-	INSERT INTO
-		BOARD_FILE (FILE_ID, BOARD_ID, FILE_NAME, FILE_ORINAME, FILE_URL)
-VALUES ( BOARD_FILE_SEQ.NEXTVAL,BOARD_Seq.currval,#{fileName},#{fileOriName},#{fileUrl})
-	]]>
-</insert>
+
+
+
+
+
+
+	<!--	&lt;!&ndash;  댓글 CRUD &ndash;&gt;-->
+
+	<!--	<select id="selectreplyList"  parameterType="String" resultType="kr.co.seoulit.account.sys.base.to.BoardBean">-->
+	<!--		SELECT-->
+	<!--			RE.RID as rid-->
+	<!--			 , RE.RE_CONTENTS as reContents-->
+	<!--			 , RE.RE_WRITER AS reWritter-->
+	<!--			 ,RE.RE_WRITEDATE as reWrittedate-->
+	<!--		FROM BOARD_REPLY RE LEFT OUTER JOIN BOARD B-->
+	<!--											ON RE.BID = B.ID-->
+	<!--		WHERE RE.BID = #{id}-->
+	<!--	</select>-->
+
+	<!--	<insert id="insertReBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean" >-->
+	<!--		INSERT INTO BOARD_REPLY (RID,BID,RE_CONTENTS,RE_WRITER,RE_WRITEDATE)-->
+	<!--		VALUES (REPLY_Seq.NEXTVAL-->
+	<!--			   ,#{bid}-->
+	<!--			   ,#{reContents}-->
+	<!--			   ,#{reWritter}-->
+	<!--			   ,SYSDATE)-->
+	<!--	</insert>-->
+
+	<!--	<delete id="deleteReBoard" parameterType="String" >-->
+
+	<!--		DELETE  FROM BOARD_REPLY WHERE RID = #{rid}-->
+
+	<!--	</delete>-->
+	<!--	<update id="modifyReBoard" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">-->
+	<!--		UPDATE BOARD_REPLY SET-->
+	<!--			RE_CONTENTS=#{reContents}-->
+	<!--		WHERE RID=#{rid}-->
+
+	<!--	</update>-->
+
+	<!--&lt;!&ndash;	<resultMap id="fileInsertBoard" type="kr.co.seoulit.account.sys.base.to.BoardFIleBean">&ndash;&gt;-->
+	<!--&lt;!&ndash;		<result property="fileId" column="FILE_ID"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;		<result property="boardId" column="BOARD_ID"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;		<result property="fileName" column="FILE_NAME"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;		<result property="fileOriName" column="FILE_ORINAME"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;		<result property="fileUrl" column="FILE_URL"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;	</resultMap>&ndash;&gt;-->
+
+	<!--<insert id="fileInsert" parameterType="kr.co.seoulit.account.sys.base.to.BoardBean">-->
+	<!--	<![CDATA[-->
+	<!--	INSERT INTO-->
+	<!--		BOARD_FILE (FILE_ID, BOARD_ID, FILE_NAME, FILE_ORINAME, FILE_URL)-->
+	<!--VALUES ( BOARD_FILE_SEQ.NEXTVAL,BOARD_Seq.currval,#{fileName},#{fileOriName},#{fileUrl})-->
+	<!--	]]>-->
+	<!--</insert>-->
 
 
 

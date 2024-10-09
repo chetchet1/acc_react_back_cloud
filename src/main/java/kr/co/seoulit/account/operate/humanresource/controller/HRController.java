@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import kr.co.seoulit.account.operate.humanresource.entity.DepartmentEntity;
 import kr.co.seoulit.account.operate.humanresource.entity.DepartmentSelectList;

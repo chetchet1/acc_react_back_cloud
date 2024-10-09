@@ -2,18 +2,21 @@ package kr.co.seoulit.account.operate.system.entity;
 
 import kr.co.seoulit.account.operate.system.to.AccountControlBean;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 
 @Entity
 @Table(name = "ACCOUNT")
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class AccountEntity {
     @Id
     private String accountInnerCode;
+
     private String parentAccountInnerCode;
     private String accountCode;
     private String accountCharacter;

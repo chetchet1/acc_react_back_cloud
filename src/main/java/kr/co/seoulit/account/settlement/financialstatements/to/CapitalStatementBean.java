@@ -2,7 +2,9 @@ package kr.co.seoulit.account.settlement.financialstatements.to;
 
 import kr.co.seoulit.account.sys.base.to.BaseBean;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class CapitalStatementBean{
     private String accountPeriodNo;
     private String accountCode;

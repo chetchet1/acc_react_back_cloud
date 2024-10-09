@@ -1,8 +1,10 @@
 package kr.co.seoulit.account.settlement.financialstatements.to;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class MonthIncomeBean {
 
     private String year;

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.400s</div>
+<div class="counter">0.236s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">0.400s</td>
+<td class="success">0.236s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,66 +87,119 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>14:21:52,434 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
-14:21:52,435 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/USER/Documents/74th_project/1st_project_react/74ht_account_spring/build/resources/main/logback.xml]
-14:21:52,435 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs multiple times on the classpath.
-14:21:52,435 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [file:/C:/Users/USER/Documents/74th_project/1st_project_react/74ht_account_spring/build/resources/main/logback.xml]
-14:21:52,435 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [jar:file:/C:/Users/USER/.gradle/caches/modules-2/files-2.1/tw.com.mitake/logback-sms-appender/0.3.0/a9d8f938e47564964b9cecc9cd365b1425a67241/logback-sms-appender-0.3.0.jar!/logback.xml]
-14:21:52,515 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
-14:21:52,523 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
-14:21:52,526 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
-14:21:52,549 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - This appender no longer admits a layout as a sub-component, set an encoder instead.
-14:21:52,549 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
-14:21:52,549 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
-14:21:52,549 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.classic.net.SMTPAppender]
-14:21:52,555 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [EMAIL]
-14:21:52,570 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
-14:21:52,573 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [INFO_LOG]
-14:21:52,574 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
-14:21:52,581 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@593447952 - Will use gz compression
-14:21:52,582 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@593447952 - Will use the pattern ./was-logs/info.%d{yyyy-MM-dd}.%i.log for the active file
-14:21:52,583 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@743cb8e0 - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/info.%d{yyyy-MM-dd}.%i.log.gz'.
-14:21:52,583 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@743cb8e0 - Roll-over at midnight.
-14:21:52,588 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@743cb8e0 - Setting initial period to Mon Jan 09 20:41:44 KST 2023
-14:21:52,588 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@743cb8e0 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
-14:21:52,588 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@743cb8e0 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
-14:21:52,591 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - Active log file name: ./logs/info.log
-14:21:52,591 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - File property is set to [./logs/info.log]
-14:21:52,591 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
-14:21:52,592 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [WARN_LOG]
-14:21:52,592 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
-14:21:52,593 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@209360730 - Will use gz compression
-14:21:52,593 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@209360730 - Will use the pattern ./was-logs/warn.%d{yyyy-MM-dd}.%i.log for the active file
-14:21:52,593 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@2c1b9e4b - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/warn.%d{yyyy-MM-dd}.%i.log.gz'.
-14:21:52,593 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@2c1b9e4b - Roll-over at midnight.
-14:21:52,594 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@2c1b9e4b - Setting initial period to Mon Jan 09 20:41:44 KST 2023
-14:21:52,594 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@2c1b9e4b - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
-14:21:52,594 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@2c1b9e4b - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
-14:21:52,594 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - Active log file name: ./logs/warn.log
-14:21:52,594 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - File property is set to [./logs/warn.log]
-14:21:52,595 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [kr.co.seoulit.account.sys.common.controller.LogSMSController]
-14:21:52,596 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [SMS]
-14:21:52,597 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to DEBUG
-14:21:52,597 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
-14:21:52,597 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
-14:21:52,597 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
-14:21:52,598 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [EMAIL] to Logger[ROOT]
-14:21:52,598 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [LogController] to false
-14:21:52,598 |-INFO in ch.qos.logback.classic.joran.action.LevelAction - LogController level set to DEBUG
-14:21:52,598 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [INFO_LOG] to Logger[LogController]
-14:21:52,598 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [WARN_LOG] to Logger[LogController]
-14:21:52,598 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [org.hibernate.SQL] to false
-14:21:52,598 |-INFO in ch.qos.logback.classic.joran.action.LevelAction - org.hibernate.SQL level set to DEBUG
-14:21:52,598 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [INFO_LOG] to Logger[org.hibernate.SQL]
-14:21:52,598 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
-14:21:52,602 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@757d6814 - Registering current configuration as safe fallback point
+<pre>05:09:51,656 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
+05:09:51,687 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+05:09:51,690 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/E:/20240814%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8/78th_acc_react/account_next_back_TRY/build/resources/main/logback.xml]
+05:09:51,690 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@72a85671 - Resource [logback.xml] occurs multiple times on the classpath.
+05:09:51,691 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@72a85671 - Resource [logback.xml] occurs at [file:/E:/20240814%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8/78th_acc_react/account_next_back_TRY/build/resources/main/logback.xml]
+05:09:51,691 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@72a85671 - Resource [logback.xml] occurs at [jar:file:/C:/Users/dummy/.gradle/caches/modules-2/files-2.1/tw.com.mitake/logback-sms-appender/0.3.0/a9d8f938e47564964b9cecc9cd365b1425a67241/logback-sms-appender-0.3.0.jar!/logback.xml]
+05:09:51,818 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - &lt;level&gt; element is deprecated. Near [level] on line 88
+05:09:51,818 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - Please use &quot;level&quot; attribute within &lt;logger&gt; or &lt;root&gt; elements instead.
+05:09:51,818 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - &lt;level&gt; element is deprecated. Near [level] on line 93
+05:09:51,818 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - Please use &quot;level&quot; attribute within &lt;logger&gt; or &lt;root&gt; elements instead.
+05:09:51,867 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [STDOUT]
+05:09:51,867 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+05:09:51,918 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+05:09:51,918 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+05:09:51,918 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+05:09:51,919 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [EMAIL]
+05:09:51,919 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.classic.net.SMTPAppender]
+05:09:51,966 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [INFO_LOG]
+05:09:51,966 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+05:09:51,970 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+05:09:51,980 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1730337646 - Will use gz compression
+05:09:51,982 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1730337646 - Will use the pattern ./was-logs/info.%d{yyyy-MM-dd}.%i.log for the active file
+05:09:51,984 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@18f20260 - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/info.%d{yyyy-MM-dd}.%i.log.gz'.
+05:09:51,984 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@18f20260 - Roll-over at midnight.
+05:09:51,985 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@18f20260 - Setting initial period to 2023-10-13T00:27:48Z
+05:09:51,985 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@18f20260 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+05:09:51,985 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@18f20260 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+05:09:51,988 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - Active log file name: ./logs/info.log
+05:09:51,989 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - File property is set to [./logs/info.log]
+05:09:51,989 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [WARN_LOG]
+05:09:51,989 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+05:09:51,990 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+05:09:51,991 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1256405521 - Will use gz compression
+05:09:51,991 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1256405521 - Will use the pattern ./was-logs/warn.%d{yyyy-MM-dd}.%i.log for the active file
+05:09:51,991 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@7a48e6e2 - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/warn.%d{yyyy-MM-dd}.%i.log.gz'.
+05:09:51,991 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@7a48e6e2 - Roll-over at midnight.
+05:09:51,992 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@7a48e6e2 - Setting initial period to 2023-10-13T00:27:48Z
+05:09:51,992 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@7a48e6e2 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+05:09:51,992 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@7a48e6e2 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+05:09:51,992 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - Active log file name: ./logs/warn.log
+05:09:51,992 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - File property is set to [./logs/warn.log]
+05:09:51,993 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [SMS] not referenced. Skipping further processing.
+05:09:51,993 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to DEBUG
+05:09:51,996 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [STDOUT] to Logger[ROOT]
+05:09:52,000 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+05:09:52,000 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [STDOUT] to Logger[ROOT]
+05:09:52,000 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [EMAIL] to Logger[ROOT]
+05:09:52,001 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [LogController] to false
+05:09:52,001 |-INFO in ch.qos.logback.classic.model.processor.LevelModelHandler - LogController level set to DEBUG
+05:09:52,001 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [INFO_LOG] to Logger[LogController]
+05:09:52,001 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [WARN_LOG] to Logger[LogController]
+05:09:52,001 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [org.hibernate.SQL] to false
+05:09:52,001 |-INFO in ch.qos.logback.classic.model.processor.LevelModelHandler - org.hibernate.SQL level set to DEBUG
+05:09:52,001 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [INFO_LOG] to Logger[org.hibernate.SQL]
+05:09:52,001 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@b40bb6e - End of configuration.
+05:09:52,002 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@3a94964 - Registering current configuration as safe fallback point
 
-[2023-01-18 14:21:52:273][Test worker] INFO  [SpringBootTestContextBootstrapper:305] - Neither @ContextConfiguration nor @ContextHierarchy found for test class [kr.co.seoulit.account.AccountApplicationTest], using SpringBootContextLoader
-[2023-01-18 14:21:52:282][Test worker] INFO  [AbstractContextLoader:264] - Could not detect default resource locations for test class [kr.co.seoulit.account.AccountApplicationTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-[2023-01-18 14:21:52:283][Test worker] INFO  [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [kr.co.seoulit.account.AccountApplicationTest]: AccountApplicationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-[2023-01-18 14:21:52:392][Test worker] INFO  [SpringBootTestContextBootstrapper:238] - Found @SpringBootConfiguration kr.co.seoulit.account.AccountApplication for test class kr.co.seoulit.account.AccountApplicationTest
-[2023-01-18 14:21:52:491][Test worker] INFO  [SpringBootTestContextBootstrapper:245] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-[2023-01-18 14:21:52:510][Test worker] INFO  [SpringBootTestContextBootstrapper:174] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1eea9d2d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@60921b21, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@bd2f5a9, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4d4960c8, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7808fb9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@773bd77b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6b580b88, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6d91790b, org.springframework.test.context.event.EventPublishingTestExecutionListener@6e6fce47, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@47c64cfe, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6ce90bc5, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@a567e72, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a5b8489, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6f8f8a80, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4b1c0397]
+[2024-10-07 05:09:52:504][Test worker] INFO  [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [kr.co.seoulit.account.AccountApplicationTest]: AccountApplicationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2024-10-07 05:09:52:738][Test worker] INFO  [SpringBootTestContextBootstrapper:248] - Found @SpringBootConfiguration kr.co.seoulit.account.AccountApplication for test class kr.co.seoulit.account.AccountApplicationTest
+05:09:52,884 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - &lt;level&gt; element is deprecated. Near [level] on line 88
+05:09:52,884 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - Please use &quot;level&quot; attribute within &lt;logger&gt; or &lt;root&gt; elements instead.
+05:09:52,884 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - &lt;level&gt; element is deprecated. Near [level] on line 93
+05:09:52,884 |-WARN in ch.qos.logback.classic.joran.action.LevelAction - Please use &quot;level&quot; attribute within &lt;logger&gt; or &lt;root&gt; elements instead.
+05:09:52,886 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [STDOUT]
+05:09:52,886 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+05:09:52,887 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+05:09:52,887 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+05:09:52,887 |-WARN in ch.qos.logback.core.ConsoleAppender[STDOUT] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+05:09:52,887 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [EMAIL]
+05:09:52,887 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.classic.net.SMTPAppender]
+05:09:52,894 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [INFO_LOG]
+05:09:52,894 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+05:09:52,894 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+05:09:52,925 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@71148574 - Will use gz compression
+05:09:52,926 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@71148574 - Will use the pattern ./was-logs/info.%d{yyyy-MM-dd}.%i.log for the active file
+05:09:52,927 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@148c7c4b - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/info.%d{yyyy-MM-dd}.%i.log.gz'.
+05:09:52,927 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@148c7c4b - Roll-over at midnight.
+05:09:52,927 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@148c7c4b - Setting initial period to 2023-10-13T00:27:48Z
+05:09:52,927 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@148c7c4b - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+05:09:52,927 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@148c7c4b - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+05:09:52,928 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - Active log file name: ./logs/info.log
+05:09:52,928 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_LOG] - File property is set to [./logs/info.log]
+05:09:52,928 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [WARN_LOG]
+05:09:52,928 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+05:09:52,930 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+05:09:52,931 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@537524656 - Will use gz compression
+05:09:52,931 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@537524656 - Will use the pattern ./was-logs/warn.%d{yyyy-MM-dd}.%i.log for the active file
+05:09:52,932 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@50d951e7 - The date pattern is 'yyyy-MM-dd' from file name pattern './was-logs/warn.%d{yyyy-MM-dd}.%i.log.gz'.
+05:09:52,932 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@50d951e7 - Roll-over at midnight.
+05:09:52,932 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@50d951e7 - Setting initial period to 2023-10-13T00:27:48Z
+05:09:52,932 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@50d951e7 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+05:09:52,932 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@50d951e7 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+05:09:52,933 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - Active log file name: ./logs/warn.log
+05:09:52,933 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN_LOG] - File property is set to [./logs/warn.log]
+05:09:52,933 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [SMS] not referenced. Skipping further processing.
+05:09:52,933 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to DEBUG
+05:09:52,933 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [STDOUT] to Logger[ROOT]
+05:09:52,933 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+05:09:52,933 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@39ad12b6 - Propagating INFO level on Logger[ROOT] onto the JUL framework
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [STDOUT] to Logger[ROOT]
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [EMAIL] to Logger[ROOT]
+05:09:52,934 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [LogController] to false
+05:09:52,934 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@39ad12b6 - Propagating DEBUG level on Logger[LogController] onto the JUL framework
+05:09:52,934 |-INFO in ch.qos.logback.classic.model.processor.LevelModelHandler - LogController level set to DEBUG
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [INFO_LOG] to Logger[LogController]
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [WARN_LOG] to Logger[LogController]
+05:09:52,934 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [org.hibernate.SQL] to false
+05:09:52,934 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@39ad12b6 - Propagating DEBUG level on Logger[org.hibernate.SQL] onto the JUL framework
+05:09:52,934 |-INFO in ch.qos.logback.classic.model.processor.LevelModelHandler - org.hibernate.SQL level set to DEBUG
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [INFO_LOG] to Logger[org.hibernate.SQL]
+05:09:52,934 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@4eb45fec - End of configuration.
+05:09:52,934 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@211febf3 - Registering current configuration as safe fallback point
+
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -154,22 +207,120 @@
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v2.7.0)
+ :: Spring Boot ::                (v3.0.5)
 
-[2023-01-18 14:21:53:879][Test worker] WARN  [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+[2024-10-07 05:09:52:1348][background-preinit] INFO  [Version:21] - HV000001: Hibernate Validator 7.0.1.Final
+[2024-10-07 05:09:53:1370][Test worker] WARN  [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
-	jar:file:/C:/Users/USER/.gradle/caches/modules-2/files-2.1/org.json/json/20220320/6df2c050972619466f6dcef7654ef9bcc01dfd0/json-20220320.jar!/org/json/JSONObject.class
-	jar:file:/C:/Users/USER/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/dummy/.gradle/caches/modules-2/files-2.1/org.json/json/20220320/6df2c050972619466f6dcef7654ef9bcc01dfd0/json-20220320.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/dummy/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-[2023-01-18 14:21:53:897][Test worker] INFO  [AccountApplicationTest:55] - Starting AccountApplicationTest using Java 11.0.11 on DESKTOP-ABN6I70 with PID 7432 (started by USER in C:\Users\USER\Documents\74th_project\1st_project_react\74ht_account_spring)
-[2023-01-18 14:21:53:898][Test worker] INFO  [AccountApplicationTest:634] - No active profile set, falling back to 1 default profile: &quot;default&quot;
+[2024-10-07 05:09:53:1387][Test worker] INFO  [AccountApplicationTest:51] - Starting AccountApplicationTest using Java 17.0.12 with PID 6240 (started by dummy in E:\20240814 리액트 프로젝트\78th_acc_react\account_next_back_TRY)
+[2024-10-07 05:09:53:1388][Test worker] INFO  [AccountApplicationTest:632] - No active profile set, falling back to 1 default profile: &quot;default&quot;
+[2024-10-07 05:09:55:3674][Test worker] INFO  [RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+[2024-10-07 05:09:55:3676][Test worker] INFO  [RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2024-10-07 05:09:56:4883][Test worker] INFO  [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 1195 ms. Found 8 JPA repository interfaces.
+[2024-10-07 05:09:56:4914][Test worker] INFO  [RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+[2024-10-07 05:09:56:4916][Test worker] INFO  [RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[2024-10-07 05:09:56:4949][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.budget.formulation.repository.BudgetRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4950][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.operate.funds.repository.FundRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4950][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.operate.funds.repository.NoteRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4951][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.operate.humanresource.repository.JpaDepartmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4951][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.operate.system.repository.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4952][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.posting.business.repository.JournalRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4952][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.posting.business.repository.SlipRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4952][Test worker] INFO  [RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.seoulit.account.sys.base.repository.JpaPeriodRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+[2024-10-07 05:09:56:4952][Test worker] INFO  [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+[2024-10-07 05:10:00:9172][Test worker] INFO  [HikariDataSource:110] - HikariPool-1 - Starting...
+[2024-10-07 05:10:01:10034][Test worker] INFO  [log4j2:365] - 1. Connection opened. {executed in 847ms} 
+[2024-10-07 05:10:01:10035][Test worker] INFO  [log4j2:197] - 1. Connection.new Connection returned 
+[2024-10-07 05:10:01:10036][Test worker] INFO  [PoolBase:536] - HikariPool-1 - Driver does not support get/set network timeout for connections. (Receiver class oracle.jdbc.driver.T4CConnection does not define or inherit an implementation of the resolved method 'abstract int getNetworkTimeout()' of interface java.sql.Connection.)
+[2024-10-07 05:10:01:10036][Test worker] INFO  [log4j2:197] - 1. Connection.isReadOnly() returned false
+[2024-10-07 05:10:01:10036][Test worker] INFO  [log4j2:197] - 1. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:01:10066][Test worker] INFO  [log4j2:197] - 1. Connection.isValid(1) returned true
+[2024-10-07 05:10:01:10067][Test worker] INFO  [log4j2:197] - 1. Connection.getTransactionIsolation() returned 2
+[2024-10-07 05:10:01:10068][Test worker] INFO  [HikariPool:565] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2ebf524
+[2024-10-07 05:10:01:10071][Test worker] INFO  [HikariDataSource:123] - HikariPool-1 - Start completed.
+[2024-10-07 05:10:01:10075][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:01:10100][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:01:10107][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:01:10112][Test worker] INFO  [log4j2:197] - 1. Connection.clearWarnings() returned 
+[2024-10-07 05:10:01:10247][Test worker] INFO  [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2024-10-07 05:10:02:10379][HikariPool-1 connection adder] INFO  [log4j2:365] - 2. Connection opened. {executed in 127ms} 
+[2024-10-07 05:10:02:10386][HikariPool-1 connection adder] INFO  [log4j2:197] - 2. Connection.new Connection returned 
+[2024-10-07 05:10:02:10387][HikariPool-1 connection adder] INFO  [log4j2:197] - 2. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10387][HikariPool-1 connection adder] INFO  [log4j2:197] - 2. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:10452][HikariPool-1 connection adder] INFO  [log4j2:365] - 3. Connection opened. {executed in 52ms} 
+[2024-10-07 05:10:02:10453][HikariPool-1 connection adder] INFO  [log4j2:197] - 3. Connection.new Connection returned 
+[2024-10-07 05:10:02:10453][HikariPool-1 connection adder] INFO  [log4j2:197] - 3. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10453][HikariPool-1 connection adder] INFO  [log4j2:197] - 3. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:10459][Test worker] INFO  [Version:44] - HHH000412: Hibernate ORM core version 6.1.7.Final
+[2024-10-07 05:10:02:10571][HikariPool-1 connection adder] INFO  [log4j2:365] - 4. Connection opened. {executed in 76ms} 
+[2024-10-07 05:10:02:10571][HikariPool-1 connection adder] INFO  [log4j2:197] - 4. Connection.new Connection returned 
+[2024-10-07 05:10:02:10572][HikariPool-1 connection adder] INFO  [log4j2:197] - 4. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10572][HikariPool-1 connection adder] INFO  [log4j2:197] - 4. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:10638][HikariPool-1 connection adder] INFO  [log4j2:365] - 5. Connection opened. {executed in 51ms} 
+[2024-10-07 05:10:02:10639][HikariPool-1 connection adder] INFO  [log4j2:197] - 5. Connection.new Connection returned 
+[2024-10-07 05:10:02:10641][HikariPool-1 connection adder] INFO  [log4j2:197] - 5. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10645][HikariPool-1 connection adder] INFO  [log4j2:197] - 5. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:10719][HikariPool-1 connection adder] INFO  [log4j2:365] - 6. Connection opened. {executed in 51ms} 
+[2024-10-07 05:10:02:10719][HikariPool-1 connection adder] INFO  [log4j2:197] - 6. Connection.new Connection returned 
+[2024-10-07 05:10:02:10719][HikariPool-1 connection adder] INFO  [log4j2:197] - 6. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10719][HikariPool-1 connection adder] INFO  [log4j2:197] - 6. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:10808][HikariPool-1 connection adder] INFO  [log4j2:365] - 7. Connection opened. {executed in 69ms} 
+[2024-10-07 05:10:02:10809][HikariPool-1 connection adder] INFO  [log4j2:197] - 7. Connection.new Connection returned 
+[2024-10-07 05:10:02:10809][HikariPool-1 connection adder] INFO  [log4j2:197] - 7. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:10809][HikariPool-1 connection adder] INFO  [log4j2:197] - 7. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:11041][HikariPool-1 connection adder] INFO  [log4j2:365] - 8. Connection opened. {executed in 208ms} 
+[2024-10-07 05:10:02:11041][HikariPool-1 connection adder] INFO  [log4j2:197] - 8. Connection.new Connection returned 
+[2024-10-07 05:10:02:11041][HikariPool-1 connection adder] INFO  [log4j2:197] - 8. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:11041][HikariPool-1 connection adder] INFO  [log4j2:197] - 8. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:11157][HikariPool-1 connection adder] INFO  [log4j2:365] - 9. Connection opened. {executed in 96ms} 
+[2024-10-07 05:10:02:11158][HikariPool-1 connection adder] INFO  [log4j2:197] - 9. Connection.new Connection returned 
+[2024-10-07 05:10:02:11158][HikariPool-1 connection adder] INFO  [log4j2:197] - 9. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:11158][HikariPool-1 connection adder] INFO  [log4j2:197] - 9. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:02:11228][HikariPool-1 connection adder] INFO  [log4j2:365] - 10. Connection opened. {executed in 59ms} 
+[2024-10-07 05:10:02:11229][HikariPool-1 connection adder] INFO  [log4j2:197] - 10. Connection.new Connection returned 
+[2024-10-07 05:10:02:11229][HikariPool-1 connection adder] INFO  [log4j2:197] - 10. Connection.isReadOnly() returned false
+[2024-10-07 05:10:02:11229][HikariPool-1 connection adder] INFO  [log4j2:197] - 10. Connection.getAutoCommit() returned true
+[2024-10-07 05:10:03:11585][Test worker] INFO  [log4j2:197] - 1. Connection.isValid(5) returned true
+[2024-10-07 05:10:03:11586][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:03:11586][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:03:11587][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:03:11605][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:03:11661][Test worker] INFO  [SQL dialect:66] - HHH000400: Using dialect: org.hibernate.dialect.OracleDialect
+[2024-10-07 05:10:03:11698][Test worker] INFO  [log4j2:197] - 1. Connection.getCatalog() returned null
+[2024-10-07 05:10:03:11792][Test worker] INFO  [log4j2:197] - 1. Statement.new Statement returned 
+[2024-10-07 05:10:03:11793][Test worker] INFO  [log4j2:197] - 1. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@1bbc1b90
+[2024-10-07 05:10:03:11813][Test worker] INFO  [log4j2:243] - 1. SELECT SYS_CONTEXT('USERENV','CURRENT_SCHEMA') FROM DUAL  {executed in 12 ms}
+[2024-10-07 05:10:03:11818][Test worker] INFO  [log4j2:197] - 1. ResultSet.new ResultSet returned 
+[2024-10-07 05:10:03:11819][Test worker] INFO  [log4j2:197] - 1. Statement.executeQuery(SELECT SYS_CONTEXT('USERENV','CURRENT_SCHEMA') FROM DUAL) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@1f013047
+[2024-10-07 05:10:03:11834][Test worker] INFO  [log4j2:197] - 1. ResultSet.next() returned true
+[2024-10-07 05:10:03:11835][Test worker] INFO  [log4j2:197] - 1. ResultSet.getString(1) returned NEXAACC78
+[2024-10-07 05:10:03:11837][Test worker] INFO  [log4j2:390] - 
+|----------------------------------------|
+|sys_context('userenv','current_schema') |
+|----------------------------------------|
+|NEXAACC78                               |
+|----------------------------------------|
+
+[2024-10-07 05:10:03:11837][Test worker] INFO  [log4j2:197] - 1. ResultSet.close() returned void
+[2024-10-07 05:10:03:11838][Test worker] INFO  [log4j2:197] - 1. Statement.close() returned 
+[2024-10-07 05:10:03:11842][Test worker] INFO  [log4j2:197] - 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3ad2883a
+[2024-10-07 05:10:03:11850][Test worker] INFO  [log4j2:197] - 1. Connection.createClob() returned oracle.sql.CLOB@446dacf9
+[2024-10-07 05:10:03:11854][Test worker] INFO  [log4j2:197] - 1. Connection.clearWarnings() returned 
+[2024-10-07 05:10:04:12431][Test worker] WARN  [RootClass:303] - HHH000038: Composite-id class does not override equals(): kr.co.seoulit.account.operate.humanresource.entity.DepartmentPK
+[2024-10-07 05:10:04:12432][Test worker] WARN  [RootClass:306] - HHH000039: Composite-id class does not override hashCode(): kr.co.seoulit.account.operate.humanresource.entity.DepartmentPK
+[2024-10-07 05:10:04:13149][Test worker] INFO  [JtaPlatformInitiator:51] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2024-10-07 05:10:04:13162][Test worker] INFO  [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
 		@ ServiceLocator접근
-[2023-01-18 14:21:55:3336][Test worker] INFO  [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
-[2023-01-18 14:21:56:3706][Test worker] INFO  [AccountApplicationTest:61] - Started AccountApplicationTest in 3.143 seconds (JVM running for 4.744)
+[2024-10-07 05:10:07:16137][Test worker] WARN  [JpaBaseConfiguration$JpaWebConfiguration:231] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2024-10-07 05:10:08:16351][Test worker] INFO  [WelcomePageHandlerMapping:52] - Adding welcome page: class path resource [static/index.html]
+[2024-10-07 05:10:10:18866][Test worker] INFO  [AccountApplicationTest:57] - Started AccountApplicationTest in 17.906 seconds (process running for 19.789)
 </pre>
 </span>
 </div>
@@ -181,7 +332,7 @@ You may wish to exclude one of them to ensure predictable runtime behavior
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4.1</a> at 2023. 1. 18. 오후 2:21:56</p>
+<a href="http://www.gradle.org">Gradle 7.4.1</a> at 2024. 10. 7. 오전 5:10:11</p>
 </div>
 </div>
 </body>

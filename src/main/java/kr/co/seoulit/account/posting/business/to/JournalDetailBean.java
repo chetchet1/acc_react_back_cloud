@@ -10,24 +10,24 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JournalDetailBean extends BaseBean {
-    private String journalNo;
     private String journalDetailNo;
-    private String accountControlType;
     private String accountControlName;
-    private String journalDescription;
+    private String accountControlType;
+    private String description;
+    private String accountControlDescription;
+    private String journalNo;
     private String accountControlCode;
     private String accountCode;
-    private String description;
 
     public String getAccountControlCode() {
-		return accountControlCode;
-	}
+        return accountControlCode;
+    }
 
-	public void setAccountControlCode(String accountControlCode) {
-		this.accountControlCode = accountControlCode;
-	}
+    public void setAccountControlCode(String accountControlCode) {
+        this.accountControlCode = accountControlCode;
+    }
 
-	public String getJournalDetailNo() {
+    public String getJournalDetailNo() {
         return journalDetailNo;
     }
 
@@ -52,26 +52,26 @@ public class JournalDetailBean extends BaseBean {
     }
 
     public String getJournalDescription() {
-        return journalDescription;
-    }
-
-    public void setJournalDescription(String journalDescription) {
-        this.journalDescription = journalDescription;
-    }
-
-    public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setJournalDescription(String journalDescription) {
+        this.description = journalDescription;
     }
 
-	public void setJournalNo(String journalNo) {
-		this.journalNo = journalNo;
-	}
+    public String getAccountControlDescription() {
+        return accountControlDescription;
+    }
 
-	public String getJournalNo() {
+    public void setAccountControlDescription(String accountControlDescription) {
+        this.accountControlDescription = accountControlDescription;
+    }
+
+    public void setJournalNo(String journalNo) {
+        this.journalNo = journalNo;
+    }
+
+    public String getJournalNo() {
         return journalNo;
     }
 

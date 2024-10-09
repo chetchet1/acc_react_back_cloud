@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import kr.co.seoulit.account.operate.system.to.PeriodBean;
 import kr.co.seoulit.account.sys.base.to.*;
@@ -51,17 +51,28 @@ public interface BaseService {
 
 	public void findIreportTotalData(HttpServletRequest request, HttpServletResponse response);
 
-	public ArrayList<BoardBean> findParentboardList();
+	ArrayList<BoardBean> selectParentBoardList();
 
-	public ArrayList<BoardBean> findDetailboardList(String id);
+	public BoardBean selectBoardId(String id);
+
+	BoardBean findDetailboardList(String id);
 
 	public ArrayList<BoardBean> findDetailboardList1(String id);
 
+	public void insertBoard(BoardBean boardBean);
+
 	public void deleteBoard(String id);
+
+	public void updateBoard(BoardBean boardbean);
+
 
 	public void updateLookup(String id);
 
-	public void insertBoard(BoardBean boardbean) throws Exception;
+
+
+
+
+//	public void insertBoard(BoardBean boardbean) throws Exception;
 
 	public void boardModify(BoardBean boardbean);
 
@@ -77,8 +88,8 @@ public interface BaseService {
 //	public void fileInsert(BoardFIleBean boardFIleBean) throws Exception;
 
 	public List<PeriodNoBean> findPeriodNo();
-	
+
 	public PeriodNoBean findTPeriodNo(HashMap<String, Object> map);
 
-    public List<MonthBean> findMonth();
+	public List<MonthBean> findMonth();
 }

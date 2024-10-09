@@ -2,13 +2,15 @@ package kr.co.seoulit.account.posting.business.entity;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "slip")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SlipEntity {
     @Id
     private Long slipNo;

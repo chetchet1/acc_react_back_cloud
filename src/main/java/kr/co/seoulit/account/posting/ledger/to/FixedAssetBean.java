@@ -3,7 +3,7 @@ package kr.co.seoulit.account.posting.ledger.to;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 import java.util.ArrayList;
 
 @EqualsAndHashCode(callSuper = false)

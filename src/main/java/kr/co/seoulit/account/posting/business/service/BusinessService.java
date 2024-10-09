@@ -8,10 +8,7 @@ import kr.co.seoulit.account.posting.business.to.JournalDetailBean;
 import kr.co.seoulit.account.posting.business.to.SlipBean;
 
 public interface BusinessService {
-    //전표 조회
-    public ArrayList<SlipBean> findRangedSlipList(HashMap<String, Object> map);
 
-    //분개 상세
     public ArrayList<JournalDetailBean> findJournalDetailList(String journalNo);
 
     public ArrayList<JournalDetailBean> addJournalDetailList(String accountCode);
@@ -26,6 +23,7 @@ public interface BusinessService {
 
     public void updateJournal(String slipNo, ArrayList<JournalBean> journalBeanList);
 
+    public ArrayList<SlipBean> findRangedSlipList(HashMap<String, Object> map);
 
     public ArrayList<SlipBean> findDisApprovalSlipList();
 
@@ -46,16 +44,15 @@ public interface BusinessService {
     //public ArrayList<JournalBean> findRangedJournalList(String fromDate, String toDate);
     public ArrayList<JournalBean> findRangedJournalList(HashMap<String, Object> map);
 
-    //전표승인 조회
     public ArrayList<SlipBean> findApprovalSlipList(HashMap<String, Object> map);
 
-	public void updateSlip(SlipBean slipBean);
+    public void updateSlip(SlipBean slipBean);
 
-	public void approvalSlipRequest(SlipBean slipBean);
+    public void approvalSlipRequest(SlipBean slipBean);
 
-	public ArrayList<JournalBean> findApprovalJournalList(String slipNo);
+    public ArrayList<JournalBean> findApprovalJournalList(String slipNo);
 
-	public void tempModifyJournalDetail(ArrayList<JournalDetailBean> journalDetailBean);
+    public void tempModifyJournalDetail(ArrayList<JournalDetailBean> journalDetailBean);
 
 }
 

@@ -3,10 +3,12 @@ package kr.co.seoulit.account.settlement.financialstatements.to;
 import kr.co.seoulit.account.posting.business.to.SlipBean;
 import kr.co.seoulit.account.sys.base.to.BaseBean;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class AccountingStatementBean extends BaseBean {
     private String accountInnerCode;
     private String accountName;

@@ -1,16 +1,18 @@
 package kr.co.seoulit.account.budget.formulation.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "BUDGET")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @IdClass(BudgetProductPK.class)
 public class BudgetEntity implements Serializable {
 

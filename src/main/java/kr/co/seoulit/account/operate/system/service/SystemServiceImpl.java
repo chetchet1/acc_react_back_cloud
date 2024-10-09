@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.seoulit.account.sys.common.exception.DataAccessException;
 import kr.co.seoulit.account.operate.system.mapper.AccountSubjectMapper;
 import kr.co.seoulit.account.operate.system.mapper.AuthorityGroupMapper;
 import kr.co.seoulit.account.operate.system.mapper.CustomerMapper;
@@ -19,26 +18,12 @@ import kr.co.seoulit.account.operate.system.mapper.CustomerMapper;
 public class SystemServiceImpl implements SystemService{
 
 	@Autowired
-    private AccountSubjectMapper accountDAO;
+	private AccountSubjectMapper accountDAO;
 	@Autowired
-    private AuthorityGroupMapper authorityGroupDAO;
+	private AuthorityGroupMapper authorityGroupDAO;
 	@Autowired
-    private CustomerMapper customerDAO;
+	private CustomerMapper customerDAO;
 
-
-	@Override
-	public List<AccountCodeBean> getAccountCodeList(){
-		return accountDAO.getAccountCodeList();
-	}
-
-	@Override
-	public List<AccountBean> getAccount(String accountCode, String accountName){
-		HashMap<String, Object> param = new HashMap<>();
-		param.put("accountCode", accountCode);
-		param.put("accountName", accountName);
-
-		return accountDAO.getAccount(param);
-	}
 
 	@Override
 	public void registerDetailaccountList(AccountBean accountBean) {
@@ -49,76 +34,76 @@ public class SystemServiceImpl implements SystemService{
 	public ArrayList<AccountBean> findAccount(HashMap<String, Object> map) {
 
 
-        	ArrayList<AccountBean> accountBean = accountDAO.selectAccount(map);
+		ArrayList<AccountBean> accountBean = accountDAO.selectAccount(map);
 
 
-        return accountBean;
-    }
-
-    @Override
-    public ArrayList<AccountBean> findParentAccountList() {
-		return accountDAO.selectParentAccountList();
-    }
-
-    @Override
-    public ArrayList<AccountBean> findDetailAccountList(String code) {
-
-        	ArrayList<AccountBean> accountList = null;
-        	accountList = accountDAO.selectDetailAccountList(code);
-
-        return accountList;
-    }
-
-    @Override
-	public ArrayList<AccountBean> findJournalAccountList(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-    	ArrayList<AccountBean> accountBean = accountDAO.JournalAccountList(map);
 		return accountBean;
 	}
 
-    @Override
-    public void modifyAccount(AccountBean accountBean) {
+	@Override
+	public ArrayList<AccountBean> findParentAccountList() {
+		return accountDAO.selectParentAccountList();
+	}
 
-        	accountDAO.updateAccount(accountBean);
+	@Override
+	public ArrayList<AccountBean> findDetailAccountList(String code) {
 
-    }
+		ArrayList<AccountBean> accountList = null;
+		accountList = accountDAO.selectDetailAccountList(code);
 
-    @Override
-    public ArrayList<AccountBean> findAccountListByName(String accountName) {
+		return accountList;
+	}
 
-        	ArrayList<AccountBean> accountList = null;
-        	accountList = accountDAO.selectAccountListByName(accountName);
+	@Override
+	public ArrayList<AccountBean> findJournalAccountList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		ArrayList<AccountBean> accountBean = accountDAO.JournalAccountList(map);
+		return accountBean;
+	}
 
-        return accountList;
-    }
+	@Override
+	public void modifyAccount(AccountBean accountBean) {
 
-    @Override
-    public ArrayList<AccountControlBean> findAccountControlList(String accountCode) {
+		accountDAO.updateAccount(accountBean);
 
-        	ArrayList<AccountControlBean> accountControlList = null;
-        	accountControlList = accountDAO.selectAccountControlList(accountCode);
+	}
 
-        return accountControlList;
-    }
+	@Override
+	public ArrayList<AccountBean> findAccountListByName(String accountName) {
+
+		ArrayList<AccountBean> accountList = null;
+		accountList = accountDAO.selectAccountListByName(accountName);
+
+		return accountList;
+	}
+
+	@Override
+	public ArrayList<AccountControlBean> findAccountControlList(String accountCode) {
+
+		ArrayList<AccountControlBean> accountControlList = null;
+		accountControlList = accountDAO.selectAccountControlList(accountCode);
+
+		return accountControlList;
+	}
 
 	@Override
 	public ArrayList<AccountBean> findDetailBudgetList(String code) {
 		// TODO Auto-generated method stub
 
-        	ArrayList<AccountBean> budgetList = null;
-        	budgetList = accountDAO.selectDetailBudgetList(code);
+		ArrayList<AccountBean> budgetList = null;
+		budgetList = accountDAO.selectDetailBudgetList(code);
 
-        return budgetList;
+		return budgetList;
 	}
 
 	@Override
 	public ArrayList<AccountBean> findParentBudgetList() {
 		// TODO Auto-generated method stub
 
-        	ArrayList<AccountBean> parentBudgetList = null;
-        	parentBudgetList = accountDAO.selectParentBudgetList();
+		ArrayList<AccountBean> parentBudgetList = null;
+		parentBudgetList = accountDAO.selectParentBudgetList();
 
-        return parentBudgetList;
+		return parentBudgetList;
 	}
 
 	@Override
@@ -135,105 +120,105 @@ public class SystemServiceImpl implements SystemService{
 	public ArrayList<PeriodBean> findAccountPeriodList() {
 		// TODO Auto-generated method stub
 
-			ArrayList<PeriodBean> accountPeriodList = null;
-        	accountPeriodList = accountDAO.selectAccountPeriodList();
+		ArrayList<PeriodBean> accountPeriodList = null;
+		accountPeriodList = accountDAO.selectAccountPeriodList();
 
-        return accountPeriodList;
+		return accountPeriodList;
 	}
 
 	@Override
-    public ArrayList<AuthorityEmpBean> findAuthorityEmp(String deptCode) {
+	public ArrayList<AuthorityEmpBean> findAuthorityEmp(String deptCode) {
 
 
-        	ArrayList<AuthorityEmpBean> authorityEmp = null;
-        	authorityEmp = authorityGroupDAO.selectAuthorityEmp(deptCode);
+		ArrayList<AuthorityEmpBean> authorityEmp = null;
+		authorityEmp = authorityGroupDAO.selectAuthorityEmp(deptCode);
 
-        return authorityEmp;
-    }
+		return authorityEmp;
+	}
 
 	@Override
 	public void modifyAuthorityGroup(ArrayList<AuthorityEmpBean> authorityEmpBean, String dept) {
 
-	        	for(AuthorityEmpBean bean : authorityEmpBean) {
-	        		authorityGroupDAO.updateAuthorityGroup(bean, dept);
-	        }
+		for(AuthorityEmpBean bean : authorityEmpBean) {
+			authorityGroupDAO.updateAuthorityGroup(bean, dept);
+		}
 	}
 
 	@Override
 	public ArrayList<AuthorityMenuBean> findAuthorityGroup(){
 
 
-        	ArrayList<AuthorityMenuBean> authorityGroup= null;
-        	authorityGroup = authorityGroupDAO.selectAuthorityGroup();
+		ArrayList<AuthorityMenuBean> authorityGroup= null;
+		authorityGroup = authorityGroupDAO.selectAuthorityGroup();
 
-        return authorityGroup;
-    }
+		return authorityGroup;
+	}
 
 	@Override
 	public void addAuthorityGroup(String addAuthority,String nextGroupCode) {
 
-	        	authorityGroupDAO.insertAuthorityGroup(addAuthority,nextGroupCode);
+		authorityGroupDAO.insertAuthorityGroup(addAuthority,nextGroupCode);
 
 	}
 	@Override
 	public ArrayList<AuthorityEmpBean> findAuthorityGroupCode() {
 
 
-        	ArrayList<AuthorityEmpBean> findAuthorityGroupCode= null;
-        	findAuthorityGroupCode = authorityGroupDAO.selectAuthorityGroupCode();
+		ArrayList<AuthorityEmpBean> findAuthorityGroupCode= null;
+		findAuthorityGroupCode = authorityGroupDAO.selectAuthorityGroupCode();
 
-        return findAuthorityGroupCode;
-    }
+		return findAuthorityGroupCode;
+	}
 	@Override
 	public void removeAuthorityGroup(String groupCode) {
 
-	        	authorityGroupDAO.deleteAuthorityGroup(groupCode);
-	        	authorityGroupDAO.deleteAuthorityMenu(groupCode);
+		authorityGroupDAO.deleteAuthorityGroup(groupCode);
+		authorityGroupDAO.deleteAuthorityMenu(groupCode);
 
 	}
 	@Override
 	public ArrayList<AuthorityMenuBean> findAuthorityMenu(String menuName){
 
-			HashMap<String, String> map = new HashMap<>();
-			map.put("menuName", menuName);
-        	ArrayList<AuthorityMenuBean> authorityMenu= null;
-        	authorityMenu = authorityGroupDAO.selectAuthorityMenu(map);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("menuName", menuName);
+		ArrayList<AuthorityMenuBean> authorityMenu= null;
+		authorityMenu = authorityGroupDAO.selectAuthorityMenu(map);
 
-        return authorityMenu;
-    }
+		return authorityMenu;
+	}
 	@Override
 	public void modifyAuthorityMenu(ArrayList<AuthorityMenuBean> authorityMenuBean, String dept) {
 
-	        	for(AuthorityMenuBean bean : authorityMenuBean) {
-	        		authorityGroupDAO.updateAuthorityMenu(bean, dept);
-	            }
+		for(AuthorityMenuBean bean : authorityMenuBean) {
+			authorityGroupDAO.updateAuthorityMenu(bean, dept);
+		}
 
 	}
 
 	@Override
 	public void registerWorkplace(WorkplaceBean workplaceBean) {
 
-			WorkplaceBean workplaceCodeCheck = customerDAO.selectWorkplace(workplaceBean.getWorkplaceCode());
-			if(workplaceCodeCheck==null) {
+		WorkplaceBean workplaceCodeCheck = customerDAO.selectWorkplace(workplaceBean.getWorkplaceCode());
+		if(workplaceCodeCheck==null) {
 			System.out.println("workplaceBean : "+workplaceBean);
 			customerDAO.insertWorkplace(workplaceBean);
-			}
+		}
 	}
 
 	@Override
-	public void removeWorkplace(ArrayList<String> getCodes) {
-
-			for(String code : getCodes) {
-				customerDAO.deleteWorkplace(code);
-        		System.out.println("사업장삭제완료:"+code);
-			}
+	public void updateWorkplace(WorkplaceBean workplaceBean){
+		customerDAO.updateWorkplace(workplaceBean);
+	}
+	@Override
+	public void removeWorkplace(WorkplaceBean workplaceBean) {
+		customerDAO.deleteWorkplace(workplaceBean);
 	}
 
 	@Override
 	public void modifyApprovalStatus(ArrayList<String> getCodes,String status) {
 
-				for(String code : getCodes) {
-					customerDAO.updateWorkplaceAccount(code, status);
+		for(String code : getCodes) {
+			customerDAO.updateWorkplaceAccount(code, status);
 
 		}
 	}
@@ -241,8 +226,8 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public WorkplaceBean findWorkplace(String workplaceCode) {
 
-			WorkplaceBean workplaceBean =null;
-			workplaceBean = customerDAO.selectWorkplace(workplaceCode);
+		WorkplaceBean workplaceBean =null;
+		workplaceBean = customerDAO.selectWorkplace(workplaceCode);
 
 		return workplaceBean;
 	}
@@ -251,8 +236,8 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public ArrayList<WorkplaceBean> findAllWorkplaceList () {
 
-			ArrayList<WorkplaceBean> allworkplaceList = null;
-			allworkplaceList = customerDAO.selectAllWorkplaceList();
+		ArrayList<WorkplaceBean> allworkplaceList = null;
+		allworkplaceList = customerDAO.selectAllWorkplaceList();
 
 		return allworkplaceList;
 	}
@@ -260,8 +245,8 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public ArrayList<BusinessBean> findBusinessList() {
 
-			ArrayList<BusinessBean> businessList = null;
-			businessList = customerDAO.selectBusinessList();
+		ArrayList<BusinessBean> businessList = null;
+		businessList = customerDAO.selectBusinessList();
 
 		return businessList;
 	}
@@ -269,18 +254,48 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public ArrayList<DetailBusinessBean> findDetailBusiness(String businessCode) {
 
-			ArrayList<DetailBusinessBean> detailBusinessList = null;
-			detailBusinessList = customerDAO.selectDetailBusinessList(businessCode);
+		ArrayList<DetailBusinessBean> detailBusinessList = null;
+		detailBusinessList = customerDAO.selectDetailBusinessList(businessCode);
 
 		return detailBusinessList;
 	}
 
+	@Override
 	public List<CustomerBean> getCustomerList(){
 		return customerDAO.selectCustomerList();
 	}
 
+	@Override
 	public List<CustomerBean> getCreditCard(){
 		return customerDAO.selectCreditCardList();
 	}
 
+	@Override
+	public ArrayList<CustomerBean> findCustomerList(){
+		ArrayList<CustomerBean>packedId = null;
+		packedId = customerDAO.findCustomerBoard();
+		return packedId;
+	}
+
+	@Override
+	public CustomerBean findIdCustomerList(String id){
+		CustomerBean customerBean=null;
+		customerBean = customerDAO.findIdCustomerBoard(id);
+		return customerBean;
+	}
+
+	@Override
+	public void insertCustomer(CustomerBean customerBean){
+		customerDAO.insertCustomerBoard(customerBean);
+	}
+
+	@Override
+	public void updateCustomer(CustomerBean customerBean){
+		customerDAO.updateCustomerBoard(customerBean);
+	}
+
+	@Override
+	public void deleteCustomer(String id){
+		customerDAO.deleteCustomerBoard(id);
+	}
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
-	<mapper namespace="kr.co.seoulit.account.operate.system.mapper.CustomerMapper">
-    
-    
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.seoulit.account.operate.system.mapper.CustomerMapper">
+
+
     <resultMap id="workplaceResult" type="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
         <result property="workplaceCode" column="WORKPLACE_CODE"/>
         <result property="companyCode" column="COMPANY_CODE"/>
@@ -18,6 +18,9 @@
         <result property="workplaceFaxNumber" column="WORKPLACE_FAX_NUMBER"/>
         <result property="workplaceBasicAddress" column="WORKPLACE_BASIC_ADDRESS"/>
         <result property="approvalStatus" column="APPROVAL_STATUS"/>
+        <result property="workplaceEstablishDate" column="WORKPLACE_ESTABLISH_DATE"/>
+        <result property="workplaceOpenDate" column="WORKPLACE_OPEN_DATE"/>
+        <result property="workplaceCloseDate" column="WORKPLACE_CLOSE_DATE"/>
     </resultMap>
 
     <resultMap id="customerResult" type="kr.co.seoulit.account.operate.system.to.CustomerBean">
@@ -44,31 +47,35 @@
         <result property="financialInstituteName" column="FINANCIAL_INSTITUTE_CODE"/>
         <result property="financialInstituteCode" column="FINANCIAL_INSTITUTE_NAME"/>
     </resultMap>
- 
+
     <select id="selectCustomerList" resultMap="customerResult">
         SELECT *
         FROM CUSTOMER
-        WHERE CUSTOMER_TYPE = '일반'
     </select>
 
 
-   <select id="selectWorkplace" parameterType="String" resultType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
+    <select id="selectWorkplace" parameterType="String" resultType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
    <![CDATA[
-      SELECT  WORKPLACE_CODE                as workplaceCode,
-              COMPANY_CODE                  as companyCode,
-              WORKPLACE_NAME                as workplaceName,
-              BUSINESS_LICENSE_NUMBER       as businessLicense,
-              CORPORATION_LICENSE_NUMBER    as corporationLicence,
-              WORKPLACE_CEO_NAME            as workplaceCeoName,
-              WORKPLACE_BUSINESS_CONDITIONS as businessConditions,
-              WORKPLACE_BUSINESS_ITEMS      as businessItems,
-              WORKPLACE_TEL_NUMBER          as workplaceTelNumber,
-              WORKPLACE_FAX_NUMBER          as workplaceFaxNumber,
-              WORKPLACE_BASIC_ADDRESS       as workplaceBasicAddress,
-              APPROVAL_STATUS             as approvalStatus,
-      FROM    WORKPLACE 
-      WHERE    WORKPLACE_CODE= #{workplaceCode}
-   ]]>
+        SELECT  WORKPLACE_CODE                as workplaceCode,
+                COMPANY_CODE                  as companyCode,
+                WORKPLACE_NAME                as workplaceName,
+                BUSINESS_LICENSE_NUMBER       as businessLicense,
+                CORPORATION_LICENSE_NUMBER    as corporationLicence,
+                WORKPLACE_CEO_NAME            as workplaceCeoName,
+                WORKPLACE_BUSINESS_CONDITIONS as businessConditions,
+                WORKPLACE_BUSINESS_ITEMS      as businessItems,
+                WORKPLACE_TEL_NUMBER          as workplaceTelNumber,
+                WORKPLACE_FAX_NUMBER          as workplaceFaxNumber,
+                WORKPLACE_BASIC_ADDRESS       as workplaceBasicAddress,
+                APPROVAL_STATUS                as approvalStatus,
+                WORKPLACE_ESTABLISH_DATE as workplaceEstablishDate,
+                WORKPLACE_OPEN_DATE as workplaceOpenDate,
+                WORKPLACE_CLOSE_DATE as workplaceCloseDate,
+                WORKPLACE_ZIP_CODE as workplaceZipCode,
+                WORKPLACE_DETAIL_ADDRESS as workplaceDetailAddress
+        FROM    WORKPLACE
+        WHERE    WORKPLACE_CODE= #{workplaceCode}
+        ]]>
    </select>
 
     <select id="selectCreditCardList" resultMap="customerResult">
@@ -79,54 +86,156 @@
         ]]>
     </select>
 
-   <insert id="insertWorkplace" parameterType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
+    <insert id="insertWorkplace" parameterType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
    <![CDATA[
-      INSERT 
-      INTO WORKPLACE  (WORKPLACE_CODE, COMPANY_CODE, WORKPLACE_NAME, BUSINESS_LICENSE_NUMBER,
-                   CORPORATION_LICENSE_NUMBER, WORKPLACE_CEO_NAME, WORKPLACE_BUSINESS_CONDITIONS,
-                   WORKPLACE_BUSINESS_ITEMS, WORKPLACE_TEL_NUMBER, WORKPLACE_FAX_NUMBER,
-                   WORKPLACE_BASIC_ADDRESS, APPROVAL_STATUS)
-      VALUES         (#{workplaceCode}, #{companyCode}, #{workplaceName}, #{businessLicense}, 
-                   #{corporationLicence}, #{workplaceCeoName}, #{businessConditions}, #{businessItems}, 
-                   #{workplaceTelNumber}, #{workplaceFaxNumber}, #{workplaceBasicAddress}, #{approvalStatus})
-   ]]>
+        INSERT
+        INTO WORKPLACE  (WORKPLACE_CODE, COMPANY_CODE, WORKPLACE_NAME, BUSINESS_LICENSE_NUMBER,
+                         CORPORATION_LICENSE_NUMBER, WORKPLACE_CEO_NAME, WORKPLACE_BUSINESS_CONDITIONS,
+                         WORKPLACE_BUSINESS_ITEMS, WORKPLACE_TEL_NUMBER, WORKPLACE_FAX_NUMBER,
+                         WORKPLACE_BASIC_ADDRESS, APPROVAL_STATUS,WORKPLACE_ESTABLISH_DATE,WORKPLACE_OPEN_DATE,
+                         WORKPLACE_CLOSE_DATE ,WORKPLACE_DETAIL_ADDRESS,WORKPLACE_ZIP_CODE  )
+        VALUES         (#{workplaceCode}, #{companyCode}, #{workplaceName}, #{businessLicense},
+                        #{corporationLicence}, #{workplaceCeoName}, #{businessConditions}, #{businessItems},
+                        #{workplaceTelNumber}, #{workplaceFaxNumber}, #{workplaceBasicAddress}, #{approvalStatus}
+                           ,#{ workplaceEstablishDate},#{workplaceOpenDate},#{workplaceCloseDate}
+                           ,#{workplaceDetailAddress},#{workplaceZipCode}
+                       )
+        ]]>
    </insert>
+
+    <update id="updateWorkplace" parameterType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
+    <![CDATA[
+        UPDATE WORKPLACE
+        SET
+            WORKPLACE_NAME = #{workplaceName},
+            BUSINESS_LICENSE_NUMBER = #{businessLicense},
+            CORPORATION_LICENSE_NUMBER = #{corporationLicence},
+            WORKPLACE_CEO_NAME = #{workplaceCeoName},
+            WORKPLACE_BUSINESS_CONDITIONS = #{businessConditions},
+            WORKPLACE_BUSINESS_ITEMS = #{businessItems},
+            WORKPLACE_TEL_NUMBER = #{workplaceTelNumber},
+            WORKPLACE_FAX_NUMBER = #{workplaceFaxNumber},
+            WORKPLACE_BASIC_ADDRESS = #{workplaceBasicAddress},
+            APPROVAL_STATUS = #{approvalStatus},
+            WORKPLACE_ESTABLISH_DATE = #{workplaceEstablishDate},
+            WORKPLACE_OPEN_DATE = #{workplaceOpenDate},
+            WORKPLACE_CLOSE_DATE = #{workplaceCloseDate},
+            WORKPLACE_ZIP_CODE = #{workplaceZipCode},
+            WORKPLACE_DETAIL_ADDRESS =  #{workplaceDetailAddress}
+        WHERE WORKPLACE_CODE = #{workplaceCode}
+        ]]>
+</update>
+
 
 
     <select id="selectAllWorkplaceList" resultType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
     <![CDATA[
-         SELECT  WORKPLACE_CODE                as workplaceCode,
-              COMPANY_CODE                  as companyCode,
-              WORKPLACE_NAME                as workplaceName,
-              BUSINESS_LICENSE_NUMBER       as businessLicense,
-              CORPORATION_LICENSE_NUMBER    as corporationLicence,
-              WORKPLACE_CEO_NAME            as workplaceCeoName,
-              WORKPLACE_BUSINESS_CONDITIONS as businessConditions,
-              WORKPLACE_BUSINESS_ITEMS      as businessItems,
-              WORKPLACE_TEL_NUMBER          as workplaceTelNumber,
-              WORKPLACE_FAX_NUMBER          as workplaceFaxNumber,
-              WORKPLACE_BASIC_ADDRESS       as workplaceBasicAddress,
-              APPROVAL_STATUS             as approvalStatus
-      FROM    WORKPLACE 
-     ]]>
+        SELECT  WORKPLACE_CODE                as workplaceCode,
+                COMPANY_CODE                  as companyCode,
+                WORKPLACE_NAME                as workplaceName,
+                BUSINESS_LICENSE_NUMBER       as businessLicense,
+                CORPORATION_LICENSE_NUMBER    as corporationLicence,
+                WORKPLACE_CEO_NAME            as workplaceCeoName,
+                WORKPLACE_BUSINESS_CONDITIONS as businessConditions,
+                WORKPLACE_BUSINESS_ITEMS      as businessItems,
+                WORKPLACE_TEL_NUMBER          as workplaceTelNumber,
+                WORKPLACE_FAX_NUMBER          as workplaceFaxNumber,
+                WORKPLACE_BASIC_ADDRESS       as workplaceBasicAddress,
+                APPROVAL_STATUS             as approvalStatus
+        FROM    WORKPLACE
+        ]]>
     </select>
-    
-    
+
+
     <update id="updateWorkplaceAccount" parameterType="Map" >
     <![CDATA[
-       UPDATE    WORKPLACE 
-       SET    APPROVAL_STATUS = #{status}
-       WHERE    WORKPLACE_CODE = #{code}
-    ]]>
+        UPDATE    WORKPLACE
+        SET    APPROVAL_STATUS = #{status}
+        WHERE    WORKPLACE_CODE = #{code}
+        ]]>
     </update>
-    
-    
+
+
     <delete id="deleteWorkplace" parameterType="kr.co.seoulit.account.operate.system.to.WorkplaceBean">
     <![CDATA[
-       DELETE 
-       FROM    WORKPLACE 
-       WHERE    WORKPLACE_CODE = #{code}
-    ]]>
+        DELETE
+        FROM    WORKPLACE
+        WHERE    WORKPLACE_CODE = #{workplaceCode}
+        ]]>
     </delete>
-    
+
+
+
+
+    <insert id="insertCustomerBoard" parameterType="kr.co.seoulit.account.operate.system.to.CustomerBean">
+        <![CDATA[
+        insert into CUSTOMER
+        (CUSTOMER_CODE,WORKPLACE_CODE,CUSTOMER_NAME,CUSTOMER_TYPE,CUSTOMER_CEO,
+         BUSINESS_LICENSE_NUMBER,SOCIAL_SECURITY_NUMBER,CUSTOMER_BUSINESS_CONDITIONS,
+         CUSTOMER_BUSINESS_ITEMS,CUSTOMER_ZIP_CODE,CUSTOMER_BASIC_ADDRESS,
+         CUSTOMER_DETAIL_ADDRESS,CUSTOMER_TEL_NUMBER,CUSTOMER_FAX_NUMBER,CUSTOMER_NOTE,
+         ACCOUNT_NUMBER,CARD_NUMBER,CARD_TYPE,CARD_MEMBER_NAME,CARD_OPEN_PLACE,
+         FINANCIAL_INSTITUTE_CODE,FINANCIAL_INSTITUTE_NAME)
+        values (
+                   #{customerCode},#{workplaceCode},#{customerName},#{customerType},
+                   #{customerCeo},#{businessLicenseNumber},#{socialSecurityNumber},
+                   #{customerBusinessConditions},#{customerBusinessItems},#{customerZipCode},
+                   #{customerBasicAddress},#{customerDetailAddress},#{customerTelNumber},
+                   #{customerFaxNumber},#{accountNumber},#{cardNumber},#{customerNote},
+                   #{cardType},#{cardMemberName},#{cardOpenPlace},#{financialInstituteName},
+                   #{financialInstituteCode}
+               )
+        ]]>
+    </insert>
+
+    <select id="findCustomerBoard" resultType="kr.co.seoulit.account.operate.system.to.CustomerBean">
+        <![CDATA[
+        select * from CUSTOMER
+        ]]>
+    </select>
+
+    <select id="findIdCustomerBoard" parameterType="kr.co.seoulit.account.operate.system.to.CustomerBean" resultType="kr.co.seoulit.account.operate.system.to.CustomerBean">
+        <![CDATA[
+        select * from CUSTOMER
+        where CUSTOMER_CODE = #{customerCode}
+        ]]>
+    </select>
+
+    <update id="updateCustomerBoard" parameterType="kr.co.seoulit.account.operate.system.to.CustomerBean">
+        <![CDATA[
+        UPDATE CUSTOMER
+        SET WORKPLACE_CODE = #{workplaceCode},
+            CUSTOMER_NAME = #{customerName},
+            CUSTOMER_TYPE = #{customerType},
+            CUSTOMER_CEO = #{customerCeo},
+            BUSINESS_LICENSE_NUMBER = #{businessLicenseNumber},
+            SOCIAL_SECURITY_NUMBER = #{socialSecurityNumber},
+            CUSTOMER_BUSINESS_CONDITIONS = #{customerBusinessConditions},
+            CUSTOMER_BUSINESS_ITEMS = #{customerBusinessItems},
+            CUSTOMER_ZIP_CODE = #{customerZipCode},
+            CUSTOMER_BASIC_ADDRESS = #{customerBasicAddress},
+            CUSTOMER_DETAIL_ADDRESS = #{customerDetailAddress},
+            CUSTOMER_TEL_NUMBER = #{customerTelNumber},
+            CUSTOMER_FAX_NUMBER = #{customerFaxNumber},
+            CUSTOMER_NOTE = #{customerNote},
+            ACCOUNT_NUMBER = #{accountNumber},
+            CARD_NUMBER = #{cardNumber},
+            CARD_TYPE = #{cardType},
+            CARD_MEMBER_NAME = #{cardMemberName},
+            CARD_OPEN_PLACE = #{cardOpenPlace},
+            FINANCIAL_INSTITUTE_CODE = #{financialInstituteName},
+            FINANCIAL_INSTITUTE_NAME = #{financialInstituteCode}
+
+        WHERE CUSTOMER_CODE = #{customerCode}
+        ]]>
+    </update>
+
+    <delete id="deleteCustomerBoard" parameterType="kr.co.seoulit.account.operate.system.to.CustomerBean">
+        <![CDATA[
+        DELETE FROM CUSTOMER
+        where CUSTOMER_CODE = #{customerCode}
+        ]]>
+    </delete>
+
+
 </mapper>

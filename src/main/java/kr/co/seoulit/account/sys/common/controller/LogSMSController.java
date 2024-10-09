@@ -17,7 +17,7 @@ import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import tw.com.mitake.sms.MitakeSms;
+//import tw.com.mitake.sms.MitakeSms;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

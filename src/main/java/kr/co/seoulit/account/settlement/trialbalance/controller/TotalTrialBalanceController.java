@@ -35,7 +35,7 @@ public class TotalTrialBalanceController {
 	// 결산 버튼
 	@GetMapping("/earlyStatements")
 	public HashMap<String, Object> finddoClosing(@RequestParam String accountPeriodNo,
-			@RequestParam String callResult) {
+												 @RequestParam String callResult) {
 		System.out.println(accountPeriodNo);
 		System.out.println(callResult);
 		HashMap<String, Object> params = new HashMap<>();
@@ -45,7 +45,7 @@ public class TotalTrialBalanceController {
 		HashMap<String, Object> closingResult = trialBalanceService.findEarlyStatements(params);
 
 		return closingResult;
-		
+
 	}
 
 	// 결산 전 데이터 조회
@@ -69,20 +69,11 @@ public class TotalTrialBalanceController {
 		return map;
 	}
 
-	// 결산 전 데이터 조회
-//	@GetMapping("/searchTotalTrialBalance")
-//	public ArrayList<TotalTrialBalanceBean> searchTotalTrialBalance(@RequestParam String accountPeriodNo) {
-//		System.out.print("----- accountPeriodNo -----> " + accountPeriodNo);
-//		HashMap<String, Object> map = new HashMap<>();
-//		map.put("accountPeriodNo", accountPeriodNo);
-//		ArrayList<TotalTrialBalanceBean> totaltrialList = trialBalanceService.searchTotalTrialBalance(map);
-//
-//		return totaltrialList;
-//	}
+
 
 	@GetMapping("/totaltrialbalance")
 	public HashMap<String, Object> findTotalTrialBalance(@RequestParam("accountPeriodNo") String accountPeriodNo,
-			@RequestParam("callResult") String callResult) {
+														 @RequestParam("callResult") String callResult) {
 		HashMap<String, Object> map = new HashMap<>();
 		try {
 			HashMap<String, Object> totaltrialList = trialBalanceService.findTotalTrialBalance(accountPeriodNo,

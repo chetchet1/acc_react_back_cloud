@@ -12,17 +12,16 @@ import kr.co.seoulit.account.settlement.financialstatements.service.FinancialSta
 @RequestMapping("/settlement")
 public class FinancialPositionController {
 
-	 @Autowired
-    private FinancialStatementsService financialStatementsService;
-	
+	@Autowired
+	private FinancialStatementsService financialStatementsService;
 
-	 // 재무상태표 조회
-	 @GetMapping("/financialposition")
-    public HashMap<String, Object> handleRequestInternal(@RequestParam("accountPeriodNo") String accountPeriodNo,
-    								          			 @RequestParam("callResult") String callResult) {
-      System.out.println(accountPeriodNo);
-      System.out.println(callResult);
-    	HashMap<String, Object> map = new HashMap<>();
+
+	@GetMapping("/financialposition")
+	public HashMap<String, Object> handleRequestInternal(@RequestParam("accountPeriodNo") String accountPeriodNo,
+														 @RequestParam("callResult") String callResult) {
+		System.out.println(accountPeriodNo);
+		System.out.println(callResult);
+		HashMap<String, Object> map = new HashMap<>();
 
 		try {
 			HashMap<String ,Object> financialPositionList = financialStatementsService.findFinancialPosition(accountPeriodNo, callResult);
@@ -33,7 +32,7 @@ public class FinancialPositionController {
 			map.put("errorMsg", e.getMessage());
 		}
 		System.out.println(map);
-        return map;
-    }
+		return map;
+	}
 
 }

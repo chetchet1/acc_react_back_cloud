@@ -4,7 +4,7 @@ import kr.co.seoulit.account.sys.base.to.BaseBean;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Id;
+import jakarta.persistence.Id;
 
 @EqualsAndHashCode(callSuper = false)
 @Data

@@ -28,7 +28,7 @@
 		]]>
     </select>
 
-    <select id="selectBudgetorganization" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean" resultMap="budgetBeanResult">
+	<select id="selectBudgetorganization" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean" resultMap="budgetBeanResult">
 		      <![CDATA[
 		SELECT M1_BUDGET,
 			   M2_BUDGET,
@@ -229,13 +229,13 @@
 
 
 	<!-- 외부parameter로 값을 던져주는거 -->
-<!--	<parameterMap id="budgetStatusParams" type="java.util.HashMap" >   &lt;!&ndash;원래 풀네임 오류시, 수정  &ndash;&gt;-->
-<!--		<parameter property="accountPeriodNo" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="workplaceCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="deptCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT"-->
-<!--				   resultMap="budgetStatusBeanResult" />-->
-<!--	</parameterMap>-->
+	<!--	<parameterMap id="budgetStatusParams" type="java.util.HashMap" >   &lt;!&ndash;원래 풀네임 오류시, 수정  &ndash;&gt;-->
+	<!--		<parameter property="accountPeriodNo" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="workplaceCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="deptCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT"-->
+	<!--				   resultMap="budgetStatusBeanResult" />-->
+	<!--	</parameterMap>-->
 
 	<resultMap id="budgetStatusBeanResult" type="kr.co.seoulit.account.budget.formulation.to.BudgetStatusBean">
 
@@ -261,28 +261,16 @@
 		<result property="m12Budget" column="M12_BUDGET" />
 	</resultMap>
 
-<!--	<select id="selectBudgetStatus" statementType="CALLABLE" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean">-->
-<!--		<![CDATA[-->
-<!--		{call P_BUDGET_STATUS(-->
-<!--		    #{accountPeriodNo},-->
-<!--		    #{workplaceCode},-->
-<!--		    #{deptCode},-->
-<!--		    #{budgetStatus, jdbcType=CURSOR, javaType=java.sql.ResultSet, mode=OUT, resultMap=budgetStatusBeanResult})}-->
-<!--		]]>-->
-<!--	</select>-->
-
-	<parameterMap id="budgetStatusParams" type="hashMap">
-		<parameter property="accountPeriodNo"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="workplaceCode"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="deptCode"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="budgetStatusBeanResult"/>
-	</parameterMap>
-
-	<select id="selectBudgetStatus" parameterMap="budgetStatusParams" statementType="CALLABLE">
-    <![CDATA[
-		{call P_BUDGET_STATUS(?,?,?,?)}
+	<select id="selectBudgetStatus" statementType="CALLABLE" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean">
+		<![CDATA[
+		{call BUDGET_STATUS(
+				#{accountPeriodNo},
+				#{workplaceCode},
+				#{deptCode},
+				#{budgetStatus, jdbcType=CURSOR, javaType=java.sql.ResultSet, mode=OUT, resultMap=budgetStatusBeanResult})}
 		]]>
-   </select>
+	</select>
+
 
 	<select id="selectBudgetAppl" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean" resultMap="budgetBeanResult">
 		<![CDATA[
@@ -317,44 +305,26 @@
 		<result property="budgetAccountComparison" column="BUDGET_ACCOUNT_COMPARISON"/>
 	</resultMap>
 
-<!--	<parameterMap id="budgetComparisonParams" type="java.util.HashMap" >-->
-<!--		<parameter property="accountPeriodNo" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="accountInnerCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="workplaceCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="deptCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
-<!--		<parameter property="result" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT"-->
-<!--				   resultMap="ComparisonBudgetBeanResult"/>-->
-<!--	</parameterMap>-->
+	<!--	<parameterMap id="budgetComparisonParams" type="java.util.HashMap" >-->
+	<!--		<parameter property="accountPeriodNo" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="accountInnerCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="workplaceCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="deptCode" jdbcType="VARCHAR" javaType="String" mode="IN" />-->
+	<!--		<parameter property="result" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT"-->
+	<!--				   resultMap="ComparisonBudgetBeanResult"/>-->
+	<!--	</parameterMap>-->
 
-<!--	예산 대비실적-->
-<!--	<select id="selectComparisonBudget" statementType="CALLABLE" >-->
-<!--		<![CDATA[-->
-<!--		{call P_BUDGET_COMPARISON(-->
-<!--				#{accountPeriodNo, jdbcType=VARCHAR},-->
-<!--		    	#{accountInnerCode, jdbcType=VARCHAR},-->
-<!--				#{workplaceCode, jdbcType=VARCHAR},-->
-<!--				#{deptCode, jdbcType=VARCHAR},-->
-<!--				#{RESULT, jdbcType=CURSOR, javaType=java.sql.ResultSet, mode=OUT, resultMap=comparisonBudgetBeanResult})}-->
-<!--		]]>-->
-<!--	</select>-->
-
-	<!--예산 대비실적-->
-	<parameterMap id="budgetComparisonParams" type="hashMap">
-		<parameter property="accountPeriodNo"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="accountInnerCode"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="workplaceCode"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="deptCode"  mode="IN" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<parameter property="RESULT" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="comparisonBudgetBeanResult"/>
-	</parameterMap>
-
-	<select id="selectComparisonBudget" parameterMap="budgetComparisonParams" statementType="CALLABLE">
-    <![CDATA[
-		{call P_BUDGET_COMPARISON(?,?,?,?,?)}
+	<!--	예산 대비실적-->
+	<select id="selectComparisonBudget" statementType="CALLABLE" >
+		<![CDATA[
+		{call BUDGET_COMPARISON(
+				#{accountPeriodNo, jdbcType=VARCHAR},
+				#{accountInnerCode, jdbcType=VARCHAR},
+				#{workplaceCode, jdbcType=VARCHAR},
+				#{deptCode, jdbcType=VARCHAR},
+				#{RESULT, jdbcType=CURSOR, javaType=java.sql.ResultSet, mode=OUT, resultMap=comparisonBudgetBeanResult})}
 		]]>
-   </select>
-
-
-
+	</select>
 	<select id="selectCurrentBudget" parameterType="kr.co.seoulit.account.budget.formulation.to.BudgetBean" resultMap="budgetBeanResult">
 		      <![CDATA[
 		SELECT M1_BUDGET,

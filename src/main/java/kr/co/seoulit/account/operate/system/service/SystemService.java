@@ -7,34 +7,29 @@ import java.util.List;
 import kr.co.seoulit.account.operate.system.to.*;
 
 public interface SystemService {
-
-	public List<AccountCodeBean> getAccountCodeList();
-
-	public List<AccountBean> getAccount(String accountCode, String accountName);
-
 	void registerDetailaccountList(AccountBean accountBean);
 
-    public ArrayList<AccountBean> findAccount(HashMap<String , Object> map);
+	public ArrayList<AccountBean> findAccount(HashMap<String , Object> map);
 
-    public ArrayList<AccountBean> findParentAccountList();
+	public ArrayList<AccountBean> findParentAccountList();
 
-    public ArrayList<AccountBean> findDetailAccountList(String code);
+	public ArrayList<AccountBean> findDetailAccountList(String code);
 
-    public ArrayList<AccountBean> findJournalAccountList(HashMap<String , Object> map);
+	public ArrayList<AccountBean> findJournalAccountList(HashMap<String , Object> map);
 
-    public void modifyAccount(AccountBean accountBean);
+	public void modifyAccount(AccountBean accountBean);
 
-    ArrayList<AccountBean> findAccountListByName(String accountName);
+	ArrayList<AccountBean> findAccountListByName(String accountName);
 
-    ArrayList<AccountControlBean> findAccountControlList(String accountCode);
+	ArrayList<AccountControlBean> findAccountControlList(String accountCode);
 
-    public ArrayList<AccountBean> findDetailBudgetList(String code);
+	public ArrayList<AccountBean> findDetailBudgetList(String code);
 
-    public ArrayList<AccountBean> findParentBudgetList();
+	public ArrayList<AccountBean> findParentBudgetList();
 
-    public ArrayList<PeriodBean> findAccountPeriodList();
+	public ArrayList<PeriodBean> findAccountPeriodList();
 
-    public ArrayList<AuthorityEmpBean> findAuthorityEmp(String deptCode);
+	public ArrayList<AuthorityEmpBean> findAuthorityEmp(String deptCode);
 
 	public void modifyAuthorityGroup(ArrayList<AuthorityEmpBean> authorityEmpBean, String dept);
 
@@ -58,17 +53,28 @@ public interface SystemService {
 
 	public void registerWorkplace(WorkplaceBean workplaceBean); //�궗�뾽�옣異붽�
 
-	public void removeWorkplace(ArrayList<String> getCodes); //�궗�뾽�옣�궘�젣 //arraylist濡� 諛붽�爰쇱엫
+	public void removeWorkplace(WorkplaceBean workplaceBean); //�궗�뾽�옣�궘�젣 //arraylist濡� 諛붽�爰쇱엫
 
+	void updateWorkplace(WorkplaceBean workplaceBean);
 	public void modifyApprovalStatus(ArrayList<String> getCodes,String status); //�궗�뾽�옣 �듅�씤�긽�깭 �뾽�뜲�씠�듃
 
 	public ArrayList<WorkplaceBean> findAllWorkplaceList(); //紐⑤뱺�궗�뾽�옣議고쉶
 
-    ArrayList<AccountBean> findParentBudgetList2(String workplaceCode, String deptCode,String accountPeriodNo);
+	ArrayList<AccountBean> findParentBudgetList2(String workplaceCode, String deptCode,String accountPeriodNo);
 
 	public List<CustomerBean> getCustomerList();
 
 	public List<CustomerBean> getCreditCard();
 
-	;
+	//2024 78 NEW
+
+	ArrayList<CustomerBean> findCustomerList();
+
+	CustomerBean findIdCustomerList(String id);
+
+	void insertCustomer(CustomerBean customerBean);
+
+	void updateCustomer(CustomerBean customerBean);
+
+	void deleteCustomer(String id);
 }

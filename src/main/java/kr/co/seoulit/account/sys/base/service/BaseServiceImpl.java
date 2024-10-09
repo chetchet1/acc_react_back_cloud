@@ -16,15 +16,14 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.query.JRQueryExecuterFactory;
 import net.sf.jasperreports.engine.query.QueryExecuterFactory;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.util.JRProperties;
 import oracle.jdbc.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -271,12 +270,11 @@ public class BaseServiceImpl implements BaseService {
 
 	@Override
 	public void findIreportData3(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
 		HashMap<String, Object> parameters = new HashMap<>();
 		System.out.println("      @ DB 접근 : getReportData");
+
 		try {
 			DataSource dataSource = ServiceLocator.getInstance().getDataSource("jdbc/ac2");
 			Connection conn = dataSource.getConnection();
@@ -284,56 +282,46 @@ public class BaseServiceImpl implements BaseService {
 			String path = "/resources/ireport/financStatus.jrxml";
 			String rPath = request.getServletContext().getRealPath(path);
 			System.out.println(rPath);
-			// 아이리포트의 xml을 전부 읽어옴
-			System.out.println(request.getParameter("from"));
-			System.out.println(request.getParameter("to"));
 
+			// 요청 파라미터 읽기
 			parameters.put("param_1", request.getParameter("from"));
 			parameters.put("param_2", request.getParameter("to"));
-			//parameters.put("param_3", OracleTypes.NUMBER);
-			//parameters.put("param_4", OracleTypes.VARCHAR);
 			parameters.put("ORACLE_REF_CURSOR", OracleTypes.CURSOR);
 
-			JRProperties.setProperty(QueryExecuterFactory.QUERY_EXECUTER_FACTORY_PREFIX+"plsql"
-					,"com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
+			// JRProperties 사용하지 않고 JRParameter로 직접 설정
 			JasperReportsContext jasperReportsContext = DefaultJasperReportsContext.getInstance();
 			JRPropertiesUtil jrPropertiesUtil = JRPropertiesUtil.getInstance(jasperReportsContext);
-			jrPropertiesUtil.setProperty("net.sf.jasperreports.query.executer.factory.plsql", "net.sf.jasperreports.engine.query.PlSqlQueryExecuterFactory");
 
+			// PlSqlQueryExecuterFactory 설정
+			jrPropertiesUtil.setProperty("net.sf.jasperreports.query.executer.factory.plsql", "com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
+
+			// 리포트 컴파일
 			JasperReport jasperReport = JasperCompileManager.compileReport(rPath);
 
-
-			jasperReport.setProperty(JRQueryExecuterFactory.QUERY_EXECUTER_FACTORY_PREFIX + "<query language>", "<value>");
-
-			jasperReport.setProperty( "net.sf.jasperreports.query.executer.factory.plsql"
-					,"com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
-
-
-
-
-
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,conn);
+			// 리포트에 파라미터 설정
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conn);
 
 			System.out.println("Ireport 시작3");
 
+			// PDF 출력
 			ServletOutputStream out = response.getOutputStream();
 			response.setContentType("application/pdf");
 			JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 			out.flush();
 
 		} catch (Exception e) {
-			System.out.println("      @ 에러발생");
+			System.out.println("      @ 에러발생: " + e.getMessage());
+			e.printStackTrace(); // 에러 로그 출력
 		}
 	}
 
 	@Override
 	public void findIreportData4(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
 		HashMap<String, Object> parameters = new HashMap<>();
 		System.out.println("      @ DB 접근 : getReportData");
+
 		try {
 			DataSource dataSource = ServiceLocator.getInstance().getDataSource("jdbc/ac2");
 			Connection conn = dataSource.getConnection();
@@ -341,44 +329,36 @@ public class BaseServiceImpl implements BaseService {
 			String path = "/resources/ireport/imTotalTrialBalance.jrxml";
 			String rPath = request.getServletContext().getRealPath(path);
 			System.out.println(rPath);
-			// 아이리포트의 xml을 전부 읽어옴
-			System.out.println(request.getParameter("from"));
-			System.out.println(request.getParameter("to"));
 
+			// 요청 파라미터 읽기
 			parameters.put("param_1", request.getParameter("from"));
 			parameters.put("param_2", request.getParameter("to"));
-			//parameters.put("param_3", OracleTypes.NUMBER);
-			//parameters.put("param_4", OracleTypes.VARCHAR);
 			parameters.put("ORACLE_REF_CURSOR", OracleTypes.CURSOR);
 
-			JRProperties.setProperty(QueryExecuterFactory.QUERY_EXECUTER_FACTORY_PREFIX+"plsql"
-					,"com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
+			// JRProperties 설정을 JRPropertiesUtil을 사용하여 진행
 			JasperReportsContext jasperReportsContext = DefaultJasperReportsContext.getInstance();
 			JRPropertiesUtil jrPropertiesUtil = JRPropertiesUtil.getInstance(jasperReportsContext);
-			jrPropertiesUtil.setProperty("net.sf.jasperreports.query.executer.factory.plsql", "net.sf.jasperreports.engine.query.PlSqlQueryExecuterFactory");
 
+			// PlSqlQueryExecuterFactory 설정
+			jrPropertiesUtil.setProperty("net.sf.jasperreports.query.executer.factory.plsql", "com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
+
+			// 리포트 컴파일
 			JasperReport jasperReport = JasperCompileManager.compileReport(rPath);
 
-
-			jasperReport.setProperty(JRQueryExecuterFactory.QUERY_EXECUTER_FACTORY_PREFIX + "<query language>", "<value>");
-
-			jasperReport.setProperty( "net.sf.jasperreports.query.executer.factory.plsql"
-					,"com.jaspersoft.jrx.query.PlSqlQueryExecuterFactory");
-
-
-
-
-
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,conn);
+			// 파라미터를 사용하여 리포트 채우기
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conn);
 
 			System.out.println("Ireport 시작4");
+
+			// PDF 출력
 			ServletOutputStream out = response.getOutputStream();
 			response.setContentType("application/pdf");
 			JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 			out.flush();
 
 		} catch (Exception e) {
-			System.out.println("      @ 에러발생");
+			System.out.println("      @ 에러발생: " + e.getMessage());
+			e.printStackTrace(); // 에러 로그 출력
 		}
 	}
 
@@ -465,19 +445,26 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	@Override
-	public ArrayList<BoardBean> findParentboardList() {
-		System.out.println("서비스 임플 호출@@@@@@@@@@");
-		ArrayList<BoardBean> accountList = null;
-		accountList = boardDAO.selectParentBoardList();
-		return accountList;
+	public ArrayList<BoardBean> selectParentBoardList() {
+		ArrayList<BoardBean> data = null;
+		data = boardDAO.selectParentBoardList();
+		return data;
 	}
 
 	@Override
-	public ArrayList<BoardBean> findDetailboardList(String id) {
-		ArrayList<BoardBean> accountList = null;
-		accountList = boardDAO.selectDetailBoardList(id);
-		return accountList;
+	public BoardBean selectBoardId(String id) {
+		BoardBean boardBean=null;
+		boardBean = boardDAO.selectBoardId(id);
+		return boardBean;
 	}
+
+	@Override
+	public BoardBean findDetailboardList(String id) {
+		BoardBean boardBean = null;
+		boardBean = boardDAO.selectDetailBoardList(id);
+		return boardBean;
+	}
+
 	@Override
 	public ArrayList<BoardBean> findDetailboardList1(String id) {
 		ArrayList<BoardBean> accountList = null;
@@ -500,12 +487,15 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	@Override
-	public void insertBoard(BoardBean boardbean) throws Exception {
+	public void insertBoard(BoardBean boardbean){
 
 		boardDAO.insertBoard(boardbean);
 
+	}
 
-
+	@Override
+	public void updateBoard(BoardBean boardbean){
+		boardDAO.updateBoard(boardbean);
 	}
 
 	@Override
@@ -563,6 +553,6 @@ public class BaseServiceImpl implements BaseService {
 		// TODO Auto-generated method stub
 		return periodNoMapper.selectPeriodNo(map);
 	}
-	
+
 }
 

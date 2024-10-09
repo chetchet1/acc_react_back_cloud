@@ -29,25 +29,6 @@ public class AccountSubjectController {
 	ModelAndView mav = null;
 	ModelMap map = new ModelMap();
 
-	//계정코드 전체조회
-	@GetMapping("/accountCodes")
-	public HashMap<String, Object> getAccountCodeList(){
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("accountCodeList", systemService.getAccountCodeList());
-		return map;
-	}
-
-	//계정코드 조건조회
-	@GetMapping("/accountCodes/{accountCode}")
-	public HashMap<String, Object> getAccount(@PathVariable("accountCode") String accountCode,
-											  @RequestParam String accountName){
-		System.out.println("accountCode = " + accountCode);
-		System.out.println("accountName = " + accountName);
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("accountCodeList", systemService.getAccount(accountCode, accountName));
-		return map;
-	}
-
 	@GetMapping("/account")
 	public ArrayList<AccountBean> findAccount(@RequestParam String accountCode, @RequestParam String accountName) {
 
@@ -125,12 +106,12 @@ public class AccountSubjectController {
 //		return accountList;
 //	}
 
-//    fromDate: fromDate,
+	//    fromDate: fromDate,
 //    toDate: toDate,
 //    parentAccount: parentAccount
 	@GetMapping("/jouranlaccountlist")
 	public ArrayList<AccountBean> findJournalAccountList(@RequestParam String fromDate, @RequestParam String toDate,
-			@RequestParam String parentAccountCode) {
+														 @RequestParam String parentAccountCode) {
 		System.out.println(fromDate);
 		System.out.println(toDate);
 		System.out.println(parentAccountCode);
@@ -173,7 +154,7 @@ public class AccountSubjectController {
 
 	@GetMapping("/parentbudgetlist2")
 	public ArrayList<AccountBean> findParentBudgetList2(@RequestParam String workplaceCode,
-			@RequestParam String deptCode, @RequestParam String accountPeriodNo) {
+														@RequestParam String deptCode, @RequestParam String accountPeriodNo) {
 		System.out.println("workplaceCode:" + workplaceCode);
 		System.out.println("deptCode:" + deptCode);
 		ArrayList<AccountBean> parentBudgetList = systemService.findParentBudgetList2(workplaceCode, deptCode,
