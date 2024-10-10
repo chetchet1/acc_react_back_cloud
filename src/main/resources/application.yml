@@ -42,7 +42,7 @@ spring:
             max-request-size: 215MB
 
     kafka:
-        bootstrap-servers: kafka:9092
+        bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
         producer:
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -61,5 +61,4 @@ tomcat:
         protocol: AJP/1.3
         remoteauthentication: false
 
-# 추가된 부분
-FRONTEND_SERVICE_URL: http://$frontendUrl
+FRONTEND_SERVICE_URL: http://$accFrontendUrl
