@@ -48,7 +48,7 @@ pipeline {
 
                         // 3. PowerShell 스크립트로 application.yml 파일 업데이트
                         bat """
-                        powershell -Command "\$accFrontendUrl = '${acc_front_service_url}'; (Get-Content 'E:\\docker_dev\\acc_react_back_cloud\\src\\main\\resources\\application.yml') -replace 'FRONTEND_SERVICE_URL:.*', 'FRONTEND_SERVICE_URL: http://\$accFrontendUrl' | Set-Content 'E:\\docker_dev\\acc_react_back_cloud\\src\\main\\resources\\application.yml';"
+                        powershell -Command "\$accFrontendUrl = '${acc_front_service_url}'; (Get-Content 'E:\\docker_Logi\\acc_react_back_cloud\\src\\main\\resources\\application.yml') -replace 'FRONTEND_SERVICE_URL:.*', 'FRONTEND_SERVICE_URL: http://\$accFrontendUrl' | Set-Content 'E:\\docker_Logi\\acc_react_back_cloud\\src\\main\\resources\\application.yml';"
                         """
                     }
                 }
