@@ -41,7 +41,7 @@ pipeline {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-key']]) {
 
                         // 1. kubectl 명령어로 회계 프론트엔드 서비스의 호스트 이름을 가져옴
-                        def acc_front_service_url = powershell(script: 'kubectl get service acc-frontend-service -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"', returnStdout: true).trim()
+                        def acc_front_service_url = powershell(script: 'kubectl get service acc-front-service -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"', returnStdout: true).trim()
 
                         // 2. 출력 확인
                         echo "Accounting Frontend Service URL: ${acc_front_service_url}"
