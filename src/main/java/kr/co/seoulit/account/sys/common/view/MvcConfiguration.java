@@ -13,17 +13,13 @@ import kr.co.seoulit.account.sys.common.interceptor.LoggerInterceptor;
 @RequiredArgsConstructor
 public class MvcConfiguration implements WebMvcConfigurer {
 
-	// 환경 변수에서 FRONTEND_SERVICE_URL 값을 주입
-	@Value("${FRONTEND_SERVICE_URL}")
-	private String frontendServiceUrl;
-
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry
 				.addMapping("/**")
 				.allowedHeaders("*")
 				.allowedMethods("*")
-				.allowedOrigins("frontendServiceUrl");
+				.allowedOrigins("*");
 	}
 
 	@Override
